@@ -1,0 +1,4 @@
+= Version history =
+1.0:
+
+- first combined version of pages_export and pages_tree
