@@ -2,3 +2,4 @@
 1.0:
 
 - first combined version of pages_export and pages_tree
+- changed: layout of start.php to be more inline with Elgg
