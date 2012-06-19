@@ -20,10 +20,14 @@
 		// register plugin hooks
 		elgg_register_plugin_hook_handler("route", "pages", "pages_tools_route_pages_hook");
 		elgg_register_plugin_hook_handler("register", "menu:entity", "pages_tools_entity_menu_hook");
+		elgg_register_plugin_hook_handler("permissions_check:comment", "object", "pages_tools_permissions_comment_hook");
 		
 		// register actions
 		elgg_register_action("pages/export", dirname(__FILE__) . "/actions/export.php", "public");
 		elgg_register_action("pages/reorder", dirname(__FILE__) . "/actions/reorder.php");
+		
+		// overrule action
+		elgg_register_action("pages/edit", dirname(__FILE__) . "/actions/pages/edit.php");
 	}
 
 	// register default Elgg events

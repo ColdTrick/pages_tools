@@ -1,6 +1,8 @@
 <?php
 
 	$english = array(
+		// general
+		'pages_tools:allow_comments' => "Allow comments",
 		'' => "",
 		
 		// export page

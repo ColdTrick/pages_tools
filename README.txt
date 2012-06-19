@@ -14,8 +14,6 @@ Different additions and modifications to the pages plugin
 
 == 3. ToDo ==
 - who can delete (default owner only)
-- allow comments (default on)
 - revisions overview
 - create subpage by not owner
 - widget titles
-- tree

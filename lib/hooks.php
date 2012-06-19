@@ -15,6 +15,12 @@
 						include(dirname(dirname(__FILE__)) . "/pages/export.php");
 					}
 					break;
+				case "view":
+					$result = false;
+					
+					set_input("guid", $page[1]);
+					include(dirname(dirname(__FILE__)) . "/pages/pages/view.php");
+					break;
 			}
 		}
 		
@@ -39,6 +45,22 @@
 					"class" => "pages-tools-lightbox",
 					"priority" => 500
 				));
+			}
+		}
+		
+		return $result;
+	}
+	
+	function pages_tools_permissions_comment_hook($hook, $type, $return_value, $params){
+		$result = $return_value;
+		
+		if(!empty($params) && is_array($params)){
+			$entity = elgg_extract("entity", $params);
+			
+			if(pages_tools_is_valid_page($entity)){
+				if($entity->allow_comments == "no"){
+					$result = false;
+				}
 			}
 		}
 		
