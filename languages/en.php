@@ -18,7 +18,10 @@
 		// actions
 		// export
 		'pages_tools:export:index' => "Contents",
-		'' => "",
+		
+		// reorder pages
+		'pages_tools:actions:reorder:error:subpages' => "No pages to reorder were supplied",
+		'pages_tools:actions:reorder:success' => "Successfully reordered the pages",
 		'' => "",
 	
 	);
