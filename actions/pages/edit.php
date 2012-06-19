@@ -67,7 +67,7 @@
 	if ($page->save()) {
 	
 		elgg_clear_sticky_form('page');
-	
+		
 		// Now save description as an annotation
 		$page->annotate('page', $page->description, $page->access_id);
 	
@@ -75,6 +75,14 @@
 	
 		if ($new_page) {
 			add_to_river('river/object/page/create', 'create', elgg_get_logged_in_user_guid(), $page->guid);
+		} elseif($page->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
+			$user = elgg_get_logged_in_user_entity();
+			
+			// not the owner edited the page, notify the owner
+			$subject = elgg_echo("pages_tools:notify:edit:subject", array($page->title));
+			$msg = elgg_echo("pages_tools:notify:edit:message", array($page->title, $user->name, $page->getURL()));
+			
+			notify_user($page->getOwnerGUID(), $user->getGUID(), $subject, $msg);
 		}
 	
 		forward($page->getURL());

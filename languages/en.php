@@ -3,7 +3,13 @@
 	$english = array(
 		// general
 		'pages_tools:allow_comments' => "Allow comments",
-		'' => "",
+		
+		// notification
+		'pages_tools:notify:edit:subject' => "Your page '%s' was edited",
+		'pages_tools:notify:edit:message' => "Hi,
+		
+Your page '%s' was edited by %s. Check out the new version here:
+%s",
 		
 		// export page
 		'pages_tools:export:title' => "Export settings",
