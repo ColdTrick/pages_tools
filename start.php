@@ -17,8 +17,9 @@
 		elgg_register_js("jquery.tree", elgg_get_site_url() . "mod/pages_tools/vendors/jstree/jquery.tree.min.js");
 		elgg_register_css("jquery.tree", elgg_get_site_url() . "mod/pages_tools/vendors/jstree/themes/classic/style.css");
 		
-		//add a widget (overrule default pages widget, to add group support)
+		// add widgets (overrule default pages widget, to add group support)
 		elgg_register_widget_type("pages", elgg_echo("pages"), elgg_echo("pages:widget:description"), "profile,dashboard,groups");
+		elgg_register_widget_type("index_pages", elgg_echo("pages"), elgg_echo("pages_tools:widgets:index_pages:description"), "index", true);
 		
 		// register plugin hooks
 		elgg_register_plugin_hook_handler("route", "pages", "pages_tools_route_pages_hook");

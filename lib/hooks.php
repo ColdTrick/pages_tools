@@ -84,6 +84,9 @@
 							$result = "pages/owner/" . $owner->username;
 						}
 						break;
+					case "index_pages":
+						$result = "pages/all";
+						break;
 				}
 			}
 		}
