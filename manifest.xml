@@ -9,8 +9,8 @@
 	<license>GNU Public License version 2</license>
  	
  	<requires>
-		<type>elgg_version</type>
-		<version>2011123101</version>
+		<type>elgg_release</type>
+		<version>1.8.3</version>
 	</requires>
 	
 	<requires>
@@ -22,6 +22,11 @@
 		<plugin>pages</plugin>
 		<priority>after</priority>
 	</requires>
+	
+	<suggests>
+		<type>plugin</type>
+		<name>widget_manager</name>
+	</suggests>
 	
 	<category>ColdTrick</category>
 </plugin_manifest>
