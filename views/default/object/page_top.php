@@ -62,6 +62,19 @@ if($page->allow_comments != "no"){
 	}
 }
 
+// group string
+$group_string = "";
+$container = $page->getContainerEntity();
+if(elgg_instanceof($container, "group") && ($container->getGUID() != elgg_get_page_owner_guid())){
+	$group_link = elgg_view("output/url", array(
+		"text" => $container->name,
+		"href" => $container->getURL(),
+		"is_trusted" => true
+	));
+	
+	$group_string = elgg_echo("river:ingroup", array($group_link));
+}
+
 $metadata = elgg_view_menu('entity', array(
 	'entity' => $vars['entity'],
 	'handler' => 'pages',
@@ -69,7 +82,7 @@ $metadata = elgg_view_menu('entity', array(
 	'class' => 'elgg-menu-hz',
 ));
 
-$subtitle = "$editor_text $comments_link $categories";
+$subtitle = "$editor_text $group_string $comments_link $categories";
 
 // do not show the metadata and controls in widget view
 if (elgg_in_context('widgets') || $revision) {
