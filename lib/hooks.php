@@ -66,3 +66,27 @@
 		
 		return $result;
 	}
+	
+	function pages_tools_widget_url_hook($hook, $type, $return_value, $params){
+		$result = $return_value;
+		
+		if(!$result && !empty($params) && is_array($params)){
+			$widget = elgg_extract("entity", $params);
+		
+			if(!empty($widget) && elgg_instanceof($widget, "object", "widget")){
+				switch($widget->handler){
+					case "pages":
+						$owner = $widget->getOwnerEntity();
+						
+						if(elgg_instanceof($owner, "group")){
+							$result = "pages/group/" . $owner->getGUID() . "/all";
+						} else {
+							$result = "pages/owner/" . $owner->username;
+						}
+						break;
+				}
+			}
+		}
+		
+		return $result;
+	}

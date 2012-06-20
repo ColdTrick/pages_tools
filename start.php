@@ -17,10 +17,14 @@
 		elgg_register_js("jquery.tree", elgg_get_site_url() . "mod/pages_tools/vendors/jstree/jquery.tree.min.js");
 		elgg_register_css("jquery.tree", elgg_get_site_url() . "mod/pages_tools/vendors/jstree/themes/classic/style.css");
 		
+		//add a widget (overrule default pages widget, to add group support)
+		elgg_register_widget_type("pages", elgg_echo("pages"), elgg_echo("pages:widget:description"), "profile,dashboard,groups");
+		
 		// register plugin hooks
 		elgg_register_plugin_hook_handler("route", "pages", "pages_tools_route_pages_hook");
 		elgg_register_plugin_hook_handler("register", "menu:entity", "pages_tools_entity_menu_hook");
 		elgg_register_plugin_hook_handler("permissions_check:comment", "object", "pages_tools_permissions_comment_hook");
+		elgg_register_plugin_hook_handler("widget_url", "widget_manager", "pages_tools_widget_url_hook");
 		
 		// register actions
 		elgg_register_action("pages/export", dirname(__FILE__) . "/actions/export.php", "public");
