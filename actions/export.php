@@ -8,6 +8,10 @@
 	
 	if(!empty($guid)){
 		if(($page = get_entity($guid)) && pages_tools_is_valid_page($page)){
+			// this could take a while
+			set_time_limit(0);
+			
+			// begin of output
 			$html = "";
 			
 			// make index
