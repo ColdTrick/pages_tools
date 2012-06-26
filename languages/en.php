@@ -10,7 +10,10 @@
 		
 Your page '%s' was edited by %s. Check out the new version here:
 %s",
-		
+
+		'pages_tools:menu:title:export' => "Export",
+	
+
 		// export page
 		'pages_tools:export:title' => "Export settings",
 		

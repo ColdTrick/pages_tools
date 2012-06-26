@@ -6,6 +6,7 @@ $language = array (
 
 Je pagina \'%s\' is bijgewerkt door %s. Om de nieuwe versie te zien, klik hier:
 %s',
+'pages_tools:menu:title:export' => "Exporteer",
   'pages_tools:export:title' => 'Export instellingen',
   'page_tools:export:format' => 'Pagina formaat',
   'page_tools:export:format:a4' => 'A4',

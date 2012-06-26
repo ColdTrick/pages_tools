@@ -40,7 +40,7 @@
 				$result[] = ElggMenuItem::factory(array(
 					"name" => "export",
 					"text" => elgg_view_icon("download"),
-					"title" => elgg_echo("export"),
+					"title" => elgg_echo("pages_tools:menu:title:export"),
 					"href" => "pages/export/" . $entity->getGUID(),
 					"class" => "pages-tools-lightbox",
 					"priority" => 500

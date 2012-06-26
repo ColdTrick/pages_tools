@@ -47,6 +47,16 @@
 		));
 	}
 	
+	elgg_load_css("lightbox");
+	elgg_load_js("lightbox");
+	
+	elgg_register_menu_item('title', array(
+						'name' => 'export',
+						'href' => "pages/export/" . $page->getGUID(),
+						'text' => elgg_echo('pages_tools:menu:title:export'),
+						'link_class' => 'elgg-button elgg-button-action pages-tools-lightbox',
+	));
+	
 	$body = elgg_view_layout('content', array(
 		'filter' => '',
 		'content' => $content,
