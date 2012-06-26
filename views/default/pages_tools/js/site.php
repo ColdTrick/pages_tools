@@ -11,7 +11,7 @@ elgg.pages_tools.tree.init = function(){
 		$tree.tree({
 			rules: {
 				multiple: false,
-				drag_copy: false,
+				drag_copy: false
 			},
 			ui: {
 				theme_name: "classic"
