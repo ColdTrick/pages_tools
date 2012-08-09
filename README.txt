@@ -15,3 +15,5 @@ Different additions and modifications to the pages plugin
 == 3. ToDo ==
 - who can delete (default owner only)
 - widget titles
+- images in text not exported
+- font conversion write in dataroot
