@@ -1,4 +1,8 @@
 = Version history =
+x.x:
+
+- fixed: #1 Undefined function on pdf export
+
 1.0:
 
 - first combined version of pages_export and pages_tree

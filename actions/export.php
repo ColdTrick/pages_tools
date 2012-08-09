@@ -49,7 +49,7 @@
 				$dompdf->set_paper($format);
 				$dompdf->load_html($html);
 				$dompdf->render();
-				$dompdf->stream(sanitize_filename($page->title));
+				$dompdf->stream(elgg_get_friendly_title($page->title) . ".pdf");
 				exit();
 			} catch(Exception $e){
 				register_error($e->getMessage());
