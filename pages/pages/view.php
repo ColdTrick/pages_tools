@@ -22,6 +22,8 @@
 	
 	$title = $page->title;
 	
+	// make breadcrumb
+	elgg_push_breadcrumb(elgg_echo("pages"), "pages/all");
 	if (elgg_instanceof($container, 'group')) {
 		elgg_push_breadcrumb($container->name, "pages/group/$container->guid/all");
 	} else {

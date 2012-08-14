@@ -1,6 +1,7 @@
 = Version history =
 x.x:
 
+- added: publication and expiration date for pages (optional and admin setting)
 - fixed: #1 Undefined function on pdf export
 
 1.0:

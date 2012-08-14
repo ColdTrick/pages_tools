@@ -167,3 +167,41 @@
 		
 		return $result;
 	}
+	
+	function pages_tools_use_advanced_publication_options(){
+		static $result;
+		
+		if(!isset($result)){
+			$result = false;
+			
+			if(($setting = elgg_get_plugin_setting("advanced_publication", "pages_tools")) && ($setting == "yes")){
+				$result = true;
+			}
+		}
+		
+		return $result;
+	}
+	
+	function pages_tools_get_publication_wheres(){
+		static $result;
+		
+		if(!isset($result)){
+			$result = array();
+			
+			if(pages_tools_use_advanced_publication_options()){
+				$unpublished_id = add_metastring("unpublished");
+				$dbprefix = elgg_get_config("dbprefix");
+				
+				$query = "(e.guid NOT IN (";
+				$query .= "SELECT entity_guid";
+				$query .= " FROM " . $dbprefix . "metadata";
+				$query .= " WHERE name_id = " . $unpublished_id;
+				$query .= "))";
+				
+				$result[] = $query;
+			}
+		}
+		
+		return $result;
+	}
+	

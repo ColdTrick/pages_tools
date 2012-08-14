@@ -15,6 +15,10 @@
 		"pagination" => false
 	);
 	
+	if($wheres = pages_tools_get_publication_wheres()){
+		$options["wheres"] = $wheres;
+	}
+	
 	if($result = elgg_list_entities($options)){
 		$more_link = elgg_view("output/url", array(
 			"href" => "pages/all",

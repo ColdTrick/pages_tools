@@ -62,8 +62,38 @@
 		$page->parent_guid = $parent_guid;
 	}
 	
+	// allow comments
 	$page->allow_comments = $allow_comments;
 	
+	// check for publication/expiration date
+	$publication_date = get_input("publication_date");
+	$expiration_date = get_input("expiration_date");
+	
+	// first reset publication status
+	unset($page->unpublished);
+	
+	$page->publication_date = $publication_date;
+	if(!empty($publication_date)){
+		if(strtotime($publication_date) > time()){
+			$page->unpublished = true;
+		}
+	}
+	
+	$page->expiration_date = $expiration_date;
+	if(!empty($expiration_date)){
+		if($new_page){
+			// new pages can't expire directly
+			if(strtotime($expiration_date) < time()){
+				register_error(elgg_echo("pages_tools:actions:edit:error:expiration_date"));
+			}
+		} else {
+			if(strtotime($expiration_date) < time()){
+				$page->unpublished = true;
+			}
+		}
+	}
+	
+	// save the page
 	if ($page->save()) {
 	
 		elgg_clear_sticky_form('page');
@@ -73,7 +103,7 @@
 	
 		system_message(elgg_echo('pages:saved'));
 	
-		if ($new_page) {
+		if ($new_page && !$page->unpublished) {
 			add_to_river('river/object/page/create', 'create', elgg_get_logged_in_user_guid(), $page->guid);
 		} elseif($page->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
 			$user = elgg_get_logged_in_user_entity();

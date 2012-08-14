@@ -8,3 +8,7 @@
 #pages-tools-navigation {
 	overflow-x: auto;
 }
+
+.pages-tools-unpublished {
+	color: red;
+}

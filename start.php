@@ -26,6 +26,7 @@
 		elgg_register_plugin_hook_handler("register", "menu:entity", "pages_tools_entity_menu_hook");
 		elgg_register_plugin_hook_handler("permissions_check:comment", "object", "pages_tools_permissions_comment_hook");
 		elgg_register_plugin_hook_handler("widget_url", "widget_manager", "pages_tools_widget_url_hook");
+		elgg_register_plugin_hook_handler("cron", "daily", "pages_tools_daily_cron_hook");
 		
 		// register actions
 		elgg_register_action("pages/export", dirname(__FILE__) . "/actions/export.php", "public");

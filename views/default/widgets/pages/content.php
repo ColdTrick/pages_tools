@@ -21,6 +21,10 @@
 		"pagination" => FALSE,
 	);
 	
+	if($wheres = pages_tools_get_publication_wheres()){
+		$options["wheres"] = $wheres;
+	}
+	
 	if($content = elgg_list_entities($options)){
 		$owner = $widget->getOwnerEntity();
 		if(elgg_instanceof($owner, "group")){
