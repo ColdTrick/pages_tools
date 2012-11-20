@@ -3,6 +3,7 @@ x.x:
 
 - added: publication and expiration date for pages (optional and admin setting)
 - fixed: #1 Undefined function on pdf export
+- fixed: small JS bug
 
 1.0:
 

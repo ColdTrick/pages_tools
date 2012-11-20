@@ -64,9 +64,12 @@ elgg.pages_tools.tree.get_guid_from_tree_element = function(element){
 }
 
 elgg.pages_tools.init = function(){
-	$("a.pages-tools-lightbox").fancybox({
-		titleShow: false
-	});
+
+	if($("a.pages-tools-lightbox").length){
+		$("a.pages-tools-lightbox").fancybox({
+			titleShow: false
+		});
+	}
 	
 	$("#pages-tools-export-form .elgg-button").live("click", function(){
 		$.fancybox.close();
