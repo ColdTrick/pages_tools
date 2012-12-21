@@ -121,7 +121,8 @@
 					"text" => $root_page->title,
 					"href" => $root_page->getURL(),
 					"rel" => $root_page->getGUID(),
-					"item_class" => $class
+					"item_class" => $class,
+					"class" => "pages-tools-wrap"
 				));
 			}
 		}
@@ -129,7 +130,7 @@
 		return $result;
 	}
 	
-	function pages_tools_register_navigation_tree_children(ElggObject $parent_entity){
+	function pages_tools_register_navigation_tree_children(ElggObject $parent_entity, $depth = 0){
 		$result = false;
 		
 		if(pages_tools_is_valid_page($parent_entity)){
@@ -142,8 +143,7 @@
 						$class = "no-edit";
 					}
 					
-					// register this item to the menu
-					elgg_register_menu_item("pages_nav", array(
+					$params = array(
 						"name" => "page_" . $child->getGUID(),
 						"text" => $child->title,
 						"href" => $child->getURL(),
@@ -151,10 +151,17 @@
 						"item_class" => $class,
 						"parent_name" => "page_" . $parent_entity->getGUID(),
 						"priority" => $order
-					));
+					);
+					
+					if($depth < 4){
+						$params["class"] = "pages-tools-wrap";
+					}
+					
+					// register this item to the menu
+					elgg_register_menu_item("pages_nav", $params);
 					
 					// register child elements
-					pages_tools_register_navigation_tree_children($child);
+					pages_tools_register_navigation_tree_children($child, $depth + 1);
 				}
 			}
 		}
