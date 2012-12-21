@@ -2,6 +2,7 @@
 x.x:
 
 - added: publication and expiration date for pages (optional and admin setting)
+- changed: no navigation tree with only one page
 - fixed: #1 Undefined function on pdf export
 - fixed: small JS bug
 

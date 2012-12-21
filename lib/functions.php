@@ -102,6 +102,7 @@
 	 * @param ElggObject $page
 	 */
 	function pages_tools_register_navigation_tree(ElggObject $entity){
+		$result = false;
 		
 		if(pages_tools_is_valid_page($entity)){
 			$root_page = pages_tools_get_root_page($entity);
@@ -111,22 +112,29 @@
 				$class = "no-edit";
 			}
 			
-			elgg_register_menu_item("pages_nav", array(
-				"name" => "page_" . $root_page->getGUID(),
-				"text" => $root_page->title,
-				"href" => $root_page->getURL(),
-				"rel" => $root_page->getGUID(),
-				"item_class" => $class
-			));
-			
-			pages_tools_register_navigation_tree_children($root_page);
+			if(pages_tools_register_navigation_tree_children($root_page)){
+				$result = true;
+				
+				// register root page
+				elgg_register_menu_item("pages_nav", array(
+					"name" => "page_" . $root_page->getGUID(),
+					"text" => $root_page->title,
+					"href" => $root_page->getURL(),
+					"rel" => $root_page->getGUID(),
+					"item_class" => $class
+				));
+			}
 		}
+		
+		return $result;
 	}
 	
 	function pages_tools_register_navigation_tree_children(ElggObject $parent_entity){
+		$result = false;
 		
 		if(pages_tools_is_valid_page($parent_entity)){
 			if($children = pages_tools_get_ordered_children($parent_entity)){
+				$result = true;
 				
 				foreach($children as $order => $child){
 					$class = "";
@@ -150,6 +158,8 @@
 				}
 			}
 		}
+		
+		return $result;
 	}
 	
 	function pages_tools_get_root_page(ElggObject $entity){
