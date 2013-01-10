@@ -55,7 +55,7 @@
 	elgg_register_menu_item('title', array(
 						'name' => 'export',
 						'href' => "pages/export/" . $page->getGUID(),
-						'text' => elgg_echo('pages_tools:menu:title:export'),
+						'text' => elgg_echo('export'),
 						'link_class' => 'elgg-button elgg-button-action pages-tools-lightbox',
 	));
 	
