@@ -28,7 +28,7 @@
 				
 				foreach($children as $child){
 					$order = $child->order;
-					if(empty($order)){
+					if($order === NULL){
 						$order = $child->time_created;
 					}
 					
