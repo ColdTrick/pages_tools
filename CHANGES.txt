@@ -2,6 +2,7 @@
 x.x:
 
 - added: publication and expiration date for pages (optional and admin setting)
+- added: option to move a subpage to a different page tree (as of Elgg 1.8.12)
 - changed: no navigation tree with only one page
 - changed: no more wrapping of the first 5 levels of the navigation tree
 - fixed: #1 Undefined function on pdf export

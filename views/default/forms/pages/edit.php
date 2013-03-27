@@ -8,19 +8,42 @@
 	// get the form fields
 	$variables = elgg_get_config("pages");
 	$page = elgg_extract("entity", $vars);
-	
-	$allow_comments = "yes";
-	if(!empty($page)){
-		$allow_comments = $page->allow_comments;
-	}
+	$user = elgg_get_logged_in_user_entity();
 	
 	$yesno_options = array(
 		"yes" => elgg_echo("option:yes"),
 		"no" => elgg_echo("option:no")
 	);
 	
+	// comments allowed
+	$allow_comments = "yes";
+	if(!empty($page)){
+		$allow_comments = $page->allow_comments;
+	}
+	
+	// who can change access
+	$can_change_access = true;
+	if ($user && $page) {
+		$can_change_access = ($user->isAdmin() || $user->getGUID() == $page->owner_guid);
+	}
+	
 	// display the form fields
 	foreach ($variables as $name => $type) {
+		
+		// don't show read / write access inputs for non-owners or admin when editing
+		if (($type == "access" || $type == "write_access") && !$can_change_access) {
+			continue;
+		}
+		
+		// don't show parent picker input for top or new pages.
+		if (($name == "parent_guid") && (!$vars["parent_guid"] || !$vars["guid"])) {
+			continue;
+		}
+		
+		$input_view = "input/$type";
+		if ($type == "parent") {
+			$input_view = "pages/input/$type";
+		}
 		
 		echo "<div>";
 		echo "<label>" . elgg_echo("pages:$name") . "</label>";
@@ -29,8 +52,18 @@
 			echo "<br />";
 		}
 		
-		echo elgg_view("input/$type", array("name" => $name, "value" => elgg_extract($name, $vars)));
+		echo elgg_view($input_view, array(
+			"name" => $name, 
+			"value" => elgg_extract($name, $vars),
+			"entity" => ($name == "parent_guid") ? $page : null,
+		));
 		echo "</div>";
+	}
+	
+	// support for categories
+	$cats = elgg_view("input/categories", $vars);
+	if (!empty($cats)) {
+		echo $cats;
 	}
 	
 	// add support to disable commenting
@@ -40,6 +73,7 @@
 	echo elgg_view("input/dropdown", array("name" => "allow_comments", "value" => $allow_comments, "options_values" => $yesno_options));
 	echo "</div>";
 	
+	// advanced puplication options
 	if(pages_tools_use_advanced_publication_options()){
 		if(!empty($page)){
 			$publication_date_value = $page->publication_date;
@@ -73,12 +107,6 @@
 		echo elgg_view_module("info", elgg_echo("pages_tools:label:publication_options"), $publication_date . $expiration_date);
 	}
 	
-	// support for categories
-	$cats = elgg_view("input/categories", $vars);
-	if (!empty($cats)) {
-		echo $cats;
-	}
-	
 	// final part of the form
 	echo "<div class='elgg-foot'>";
 	// send the guid of the page we"re editing
@@ -89,8 +117,8 @@
 	// send the container guid of the page
 	echo elgg_view("input/hidden", array("name" => "container_guid", "value" => elgg_extract("container_guid", $vars)));
 	
-	// send the parent guid of the page
-	if ($parent_guid = elgg_extract("parent_guid", $vars)) {
+	// send the parent guid of the page (on new pages only)
+	if (!$vars["guid"] && ($parent_guid = elgg_extract("parent_guid", $vars))) {
 		echo elgg_view("input/hidden", array("name" => "parent_guid", "value" => $parent_guid));
 	}
 	
