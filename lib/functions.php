@@ -28,7 +28,7 @@
 				
 				foreach($children as $child){
 					$order = $child->order;
-					if(empty($order)){
+					if($order === NULL){
 						$order = $child->time_created;
 					}
 					
@@ -105,25 +105,26 @@
 		$result = false;
 		
 		if(pages_tools_is_valid_page($entity)){
-			$root_page = pages_tools_get_root_page($entity);
-			
-			$class = "";
-			if(!$root_page->canEdit()){
-				$class = "no-edit";
-			}
-			
-			if(pages_tools_register_navigation_tree_children($root_page)){
-				$result = true;
+			if($root_page = pages_tools_get_root_page($entity)){
 				
-				// register root page
-				elgg_register_menu_item("pages_nav", array(
-					"name" => "page_" . $root_page->getGUID(),
-					"text" => $root_page->title,
-					"href" => $root_page->getURL(),
-					"rel" => $root_page->getGUID(),
-					"item_class" => $class,
-					"class" => "pages-tools-wrap"
-				));
+				$class = "";
+				if(!$root_page->canEdit()){
+					$class = "no-edit";
+				}
+				
+				if(pages_tools_register_navigation_tree_children($root_page)){
+					$result = true;
+					
+					// register root page
+					elgg_register_menu_item("pages_nav", array(
+						"name" => "page_" . $root_page->getGUID(),
+						"text" => $root_page->title,
+						"href" => $root_page->getURL(),
+						"rel" => $root_page->getGUID(),
+						"item_class" => $class,
+						"class" => "pages-tools-wrap"
+					));
+				}
 			}
 		}
 		
@@ -146,6 +147,7 @@
 					$params = array(
 						"name" => "page_" . $child->getGUID(),
 						"text" => $child->title,
+						"title" => $child->title,
 						"href" => $child->getURL(),
 						"rel" => $child->getGUID(),
 						"item_class" => $class,

@@ -30,4 +30,4 @@
 	$body .= elgg_view("input/reset", array("value" => elgg_echo("cancel"), "class" => "float-alt"));
 	$body .= "</div>";
 	
-	echo elgg_view_module("info", elgg_echo("pages_tools:export:title"), $body);
+	echo elgg_view_module("info", elgg_echo("export"), $body);

@@ -11,8 +11,6 @@
 		
 Your page '%s' was edited by %s. Check out the new version here:
 %s",
-
-		'pages_tools:menu:title:export' => "Export",
 	
 		'pages_tools:notify:publish:subject' => "A page has been published",
 		'pages_tools:notify:publish:message' => "Hi,
@@ -31,8 +29,6 @@ You can view your page here:
 %s",
 		
 		// export page
-		'pages_tools:export:title' => "Export settings",
-		
 		'page_tools:export:format' => "Page format",
 		'page_tools:export:format:a4' => "A4",
 		'page_tools:export:format:letter' => "Letter",
