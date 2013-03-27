@@ -18,6 +18,9 @@
 		// make the navigation tree
 		if(pages_tools_register_navigation_tree($selected_page)){
 			$title = elgg_echo("pages:navigation");
+			$title .= "<span " . elgg_format_attributes(array("class" => "float-alt", "title" => elgg_echo("pages_tools:navigation:tooltip"))) . ">";
+			$title .= elgg_view_icon("info");
+			$title .= "</span>";
 			
 			// get the navigation menu
 			$menu = "<div id='pages-tools-navigation' class='hidden'>";

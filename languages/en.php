@@ -38,6 +38,8 @@ You can view your page here:
 		'page_tools:export:include_subpages' => "Include subpages",
 		'page_tools:export:include_index' => "Include index",
 		
+		'pages_tools:navigation:tooltip' => "Did you know you can drag-and-drop pages to reorder the navigation tree?",
+		
 		// widget
 		'pages_tools:widgets:index_pages:description' => "Show the latest pages on your community",
 		
