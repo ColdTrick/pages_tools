@@ -1,5 +1,5 @@
 = Version history =
-x.x:
+1.1 (2013-04-05):
 
 - added: publication and expiration date for pages (optional and admin setting)
 - added: option to move a subpage to a different page tree (as of Elgg 1.8.12)
