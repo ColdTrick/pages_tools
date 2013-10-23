@@ -48,7 +48,7 @@
 	
 	/**
 	 * Render the index for every page below the provided page
-	 * 
+	 *
 	 * @param ElggObject $page
 	 * @return boolean
 	 */
@@ -98,7 +98,7 @@
 	
 	/**
 	 * Register a complete tree to a menu in order to display navigation
-	 * 
+	 *
 	 * @param ElggObject $page
 	 */
 	function pages_tools_register_navigation_tree(ElggObject $entity){
@@ -171,16 +171,18 @@
 		return $result;
 	}
 	
-	function pages_tools_get_root_page(ElggObject $entity){
+	function pages_tools_get_root_page(ElggObject $entity) {
 		$result = false;
 		
-		if(pages_tools_is_valid_page($entity)){
-			if(elgg_instanceof($entity, "object", "page_top")){
+		if (pages_tools_is_valid_page($entity)) {
+			if (elgg_instanceof($entity, "object", "page_top")) {
 				$result = $entity;
-			} elseif(isset($entity->parent_guid)){
+			} elseif (isset($entity->parent_guid)) {
 				$parent = get_entity($entity->parent_guid);
 				
-				$result = pages_tools_get_root_page($parent);
+				if ($parent) {
+					$result = pages_tools_get_root_page($parent);
+				}
 			}
 		}
 		
