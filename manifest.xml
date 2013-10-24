@@ -5,8 +5,10 @@
 	<version>1.1</version>
 	<description>Different additions/modifications to the pages plugin.</description>
 	<website>http://www.coldtrick.com/</website>
+	<repository>https://github.com/ColdTrick/pages_tools</repository>
+	<bugtracker>https://github.com/ColdTrick/pages_tools/issues</bugtracker>
 	<copyright>(C) ColdTrick IT Solutions 2012 - 2013</copyright>
-	<license>GNU Public License version 2</license>
+	<license>GNU General Public License version 2</license>
  	
  	<requires>
 		<type>elgg_release</type>
