@@ -1,5 +1,6 @@
 <?php
 $language = array (
+  'pages_tools:navigation:tooltip' => 'Wist u dat u pagina\'s middels drag-and-drop in volgorde kunt verplaatsen?',
   'pages_tools:unpublished' => 'Niet gepubliceerd',
   'pages_tools:notify:publish:subject' => 'Een pagina is gepubliceerd',
   'pages_tools:notify:publish:message' => 'LS,
