@@ -77,6 +77,19 @@
 						));
 					}
 				}
+				
+				if ($entity->canEdit()) {
+					// check if someome is still editing
+					$edit_notice = (int) $entity->getPrivateSetting("edit_notice");
+					if (!empty($edit_notice) && ($edit_notice > (time() - 60))) {
+						// find the edit link and change some things
+						foreach ($result as $menu_item) {
+							if ($menu_item->getName() == "edit") {
+								$menu_item->setConfirmText(elgg_echo("pages_tools:edit:confirm"));
+							}
+						}
+					}
+				}
 			}
 		}
 		
@@ -178,8 +191,8 @@
 					unset($entity->unpublished);
 					
 					// notify the user
-					notify_user($entity->getOwnerGUID(), 
-								$entity->site_guid, 
+					notify_user($entity->getOwnerGUID(),
+								$entity->site_guid,
 								elgg_echo("pages_tools:notify:publish:subject"),
 								elgg_echo("pages_tools:notify:publish:message", array(
 									$entity->title,

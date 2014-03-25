@@ -144,6 +144,9 @@
 	
 		elgg_clear_sticky_form("page");
 		
+		// unset edit notice
+		$page->removePrivateSetting("edit_notice");
+		
 		// Now save description as an annotation
 		$page->annotate("page", $page->description, $page->access_id);
 	

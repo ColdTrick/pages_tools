@@ -2,6 +2,7 @@
 
 x.x:
 
+- added: notice if someone is already editing a page
 - fixed: php warning
 
 1.1 (2013-04-05):

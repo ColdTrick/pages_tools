@@ -53,7 +53,7 @@
 		}
 		
 		echo elgg_view($input_view, array(
-			"name" => $name, 
+			"name" => $name,
 			"value" => elgg_extract($name, $vars),
 			"entity" => ($name == "parent_guid") ? $page : null,
 		));
@@ -91,7 +91,7 @@
 		$publication_date = "<div class='mbs'>";
 		$publication_date .= "<label for='publication_date'>" . elgg_echo("pages_tools:label:publication_date") . "</label>";
 		$publication_date .= elgg_view("input/date", array(
-										"name" => "publication_date", 
+										"name" => "publication_date",
 										"value" => $publication_date_value));
 		$publication_date .= "<div class='elgg-subtext'>" . elgg_echo("pages_tools:publication_date:description") . "</div>";
 		$publication_date .= "</div>";
@@ -99,7 +99,7 @@
 		$expiration_date = "<div class='mbs'>";
 		$expiration_date .= "<label for='expiration_date'>" . elgg_echo("pages_tools:label:expiration_date") . "</label>";
 		$expiration_date .= elgg_view("input/date", array(
-										"name" => "expiration_date", 
+										"name" => "expiration_date",
 										"value" => $expiration_date_value));
 		$expiration_date .= "<div class='elgg-subtext'>" . elgg_echo("pages_tools:expiration_date:description") . "</div>";
 		$expiration_date .= "</div>";
@@ -109,16 +109,21 @@
 	
 	// final part of the form
 	echo "<div class='elgg-foot'>";
-	// send the guid of the page we"re editing
-	if ($guid = elgg_extract("guid", $vars)) {
-		echo elgg_view("input/hidden", array("name" => "page_guid", "value" => $guid));
+	// send the guid of the page we're editing
+	$guid = (int) elgg_extract("guid", $vars);
+	if (!empty($guid)) {
+		// set a flag to show someome is editing
+		$page->setPrivateSetting("edit_notice", time());
+		
+		echo elgg_view("input/hidden", array("name" => "page_guid", "value" => $guid, "id" => "pages-tools-edit-guid"));
 	}
 	
 	// send the container guid of the page
 	echo elgg_view("input/hidden", array("name" => "container_guid", "value" => elgg_extract("container_guid", $vars)));
 	
 	// send the parent guid of the page (on new pages only)
-	if (!$vars["guid"] && ($parent_guid = elgg_extract("parent_guid", $vars))) {
+	$parent_guid = (int) elgg_extract("parent_guid", $vars);
+	if (empty($guid) && !empty($parent_guid)) {
 		echo elgg_view("input/hidden", array("name" => "parent_guid", "value" => $parent_guid));
 	}
 	

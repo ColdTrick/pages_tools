@@ -1,5 +1,7 @@
 <?php
 $language = array (
+  'pages_tools:edit:confirm' => 'Iemand is op dit moment deze pagina aan het bewerken!
+Weet je zeker dat jij de pagina nu ook wilt bewerken?',
   'pages_tools:navigation:tooltip' => 'Wist u dat u pagina\'s middels drag-and-drop in volgorde kunt verplaatsen?',
   'pages_tools:unpublished' => 'Niet gepubliceerd',
   'pages_tools:notify:publish:subject' => 'Een pagina is gepubliceerd',

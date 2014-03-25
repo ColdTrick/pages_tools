@@ -54,6 +54,8 @@ You can view your page here:
 		'pages_tools:label:expiration_date' => "Expiration date (optional)",
 		'pages_tools:expiration_date:description' => "The page will no longer be published after the selected date.",
 		
+		'pages_tools:edit:confirm' => "Someone is currently editing this page!\nAre you sure you also wish to edit this page?",
+		
 		// actions
 		// export
 		'pages_tools:export:index' => "Contents",

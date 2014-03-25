@@ -1,8 +1,8 @@
 <?php
-
+	
 	require_once(dirname(__FILE__) . "/lib/functions.php");
 	require_once(dirname(__FILE__) . "/lib/hooks.php");
-
+	
 	function pages_tools_init(){
 		// register DOM PDF as a library
 		elgg_register_library("dompdf", dirname(__FILE__) . "/vendors/dompdf.php");
@@ -32,10 +32,11 @@
 		elgg_register_action("pages/export", dirname(__FILE__) . "/actions/export.php", "public");
 		elgg_register_action("pages/reorder", dirname(__FILE__) . "/actions/reorder.php");
 		
+		elgg_register_action("pages_tools/update_edit_notice", dirname(__FILE__) . "/actions/update_edit_notice.php");
+		
 		// overrule action
 		elgg_register_action("pages/edit", dirname(__FILE__) . "/actions/pages/edit.php");
 	}
-
+	
 	// register default Elgg events
 	elgg_register_event_handler("init", "system", "pages_tools_init");
-	
