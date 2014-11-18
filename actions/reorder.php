@@ -14,7 +14,7 @@
 					"guids" => $order,
 					"limit" => false
 				);
-				var_dump($options);
+				
 				if($sub_pages = elgg_get_entities($options)){
 					foreach($sub_pages as $sub_page){
 						$pos = array_search($sub_page->getGUID(), $order) + 1;
