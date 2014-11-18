@@ -90,6 +90,19 @@
 						}
 					}
 				}
+				
+				// re-add delete link
+				$container = $entity->getContainerEntity();
+				if ($entity->getOwnerGUID() == elgg_get_logged_in_user_guid() || (!empty($container) && $container->canEdit())) {
+					$result[] = ElggMenuItem::factory(array(
+						'name' => 'delete',
+						'text' => elgg_view_icon('delete'),
+						'title' => elgg_echo('delete:this'),
+						'href' => "action/pages/delete?guid={$entity->getGUID()}",
+						'confirm' => elgg_echo('deleteconfirm'),
+						'priority' => 300,
+					));
+				}
 			}
 		}
 		

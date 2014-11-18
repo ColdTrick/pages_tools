@@ -36,6 +36,7 @@
 		
 		// overrule action
 		elgg_register_action("pages/edit", dirname(__FILE__) . "/actions/pages/edit.php");
+		elgg_register_action("pages/delete", dirname(__FILE__) . "/actions/pages/delete.php");
 	}
 	
 	// register default Elgg events
