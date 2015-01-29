@@ -5,7 +5,7 @@
 	
 	function pages_tools_init(){
 		// register DOM PDF as a library
-		elgg_register_library("dompdf", dirname(__FILE__) . "/vendors/dompdf.php");
+		elgg_register_library("dompdf", dirname(__FILE__) . "/vendors/dompdf/dompdf_config.inc.php");
 		
 		// extend site css
 		elgg_extend_view("css/elgg", "pages_tools/css/site");
