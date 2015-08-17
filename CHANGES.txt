@@ -1,6 +1,6 @@
 = Version history =
 
-x.x:
+1.2 (2015-08-17):
 
 - added: notice if someone is already editing a page
 - fixed: php warning
