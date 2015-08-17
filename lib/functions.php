@@ -76,7 +76,6 @@ function pages_tools_get_ordered_children(ElggObject $page) {
  * @return false|string
  */
 function pages_tools_render_index(ElggObject $page) {
-	$result = false;
 	
 	if (!pages_tools_is_valid_page($page)) {
 		return false;
@@ -158,7 +157,6 @@ function pages_tools_render_childpages(ElggObject $page) {
  * @return bool
  */
 function pages_tools_register_navigation_tree(ElggObject $entity) {
-	$result = false;
 	
 	if (!pages_tools_is_valid_page($entity)) {
 		return false;
@@ -200,7 +198,6 @@ function pages_tools_register_navigation_tree(ElggObject $entity) {
  * @return bool
  */
 function pages_tools_register_navigation_tree_children(ElggObject $parent_entity, $depth = 0) {
-	$result = false;
 	
 	if (!pages_tools_is_valid_page($parent_entity)) {
 		return false;

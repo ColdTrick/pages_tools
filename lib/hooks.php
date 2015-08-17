@@ -175,7 +175,7 @@ function pages_tools_permissions_comment_hook($hook, $type, $return_value, $para
  */
 function pages_tools_widget_url_hook($hook, $type, $return_value, $params){
 	
-	if(!empty($result) || empty($params) || !is_array($params)) {
+	if(!empty($return_value) || empty($params) || !is_array($params)) {
 		return;
 	}
 	
