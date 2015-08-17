@@ -25,6 +25,7 @@ $options = array(
 	'subtypes' => 'page_top',
 	'container_guid' => elgg_get_page_owner_guid(),
 	'full_view' => false,
+	'no_results' => elgg_echo('pages:none'),
 );
 
 // show everything if you can edit the page owner
@@ -32,9 +33,7 @@ if(!$owner->canEdit() && ($wheres = pages_tools_get_publication_wheres())){
 	$options["wheres"] = $wheres;
 }
 
-if (!($content = elgg_list_entities($options))) {
-	$content = '<p>' . elgg_echo('pages:none') . '</p>';
-}
+$content = elgg_list_entities($options);
 
 $filter_context = '';
 if (elgg_get_page_owner_guid() == elgg_get_logged_in_user_guid()) {

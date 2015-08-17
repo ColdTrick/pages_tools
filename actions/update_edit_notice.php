@@ -5,20 +5,19 @@
 
 $guid = (int) get_input("guid");
 
-if (!empty($guid)) {
-	$entity = get_entity($guid);
-	
-	if (!empty($entity) && $entity->canEdit()) {
-		if (elgg_instanceof($entity, "object", "page_top") || elgg_instanceof($entity, "object", "page")) {
-			$entity->setPrivateSetting("edit_notice", time());
-		} else {
-			register_error(elgg_echo("ClassException:ClassnameNotClass", array($guid, elgg_echo("item:object:page"))));
-		}
-	} else {
-		register_error(elgg_echo("InvalidParameterException:NoEntityFound"));
-	}
+if (empty($guid)) {
+	forward(REFERER);
+}
+
+$entity = get_entity($guid);
+if (empty($entity) || !$entity->canEdit()) {
+	forward(REFERER);
+}
+
+if (pages_tools_is_valid_page($entity)) {
+	$entity->setPrivateSetting("edit_notice", time());
 } else {
-	register_error(elgg_echo("InvalidParameterException:MissingParameter"));
+	register_error(elgg_echo("ClassException:ClassnameNotClass", array($guid, elgg_echo("item:object:page"))));
 }
 
 forward(REFERER);

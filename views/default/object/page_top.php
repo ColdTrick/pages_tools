@@ -10,7 +10,7 @@
  */
 
 
-$full = elgg_extract('full_view', $vars, FALSE);
+$full = (bool) elgg_extract('full_view', $vars, FALSE);
 $page = elgg_extract('entity', $vars, FALSE);
 $revision = elgg_extract('revision', $vars, FALSE);
 
@@ -28,7 +28,11 @@ if ($page->write_access_id == ACCESS_PUBLIC) {
 if ($revision) {
 	$annotation = $revision;
 } else {
-	$annotation = $page->getAnnotations('page', 1, 0, 'desc');
+	$annotation = $page->getAnnotations(array(
+		'annotation_name' => 'page',
+		'limit' => 1,
+		'reverse_order_by' => true,
+	));
 	if ($annotation) {
 		$annotation = $annotation[0];
 	}
@@ -49,13 +53,13 @@ $categories = elgg_view('output/categories', $vars);
 
 // show comments
 $comments_link = '';
-if($page->allow_comments != "no"){
+if ($page->allow_comments != "no") {
 	$comments_count = $page->countComments();
-	//only display if there are commments
-	if ($comments_count != 0 && !$revision) {
-		$text = elgg_echo("comments") . " ($comments_count)";
+	// only display if there are commments
+	if ($comments_count != 0 && empty($revision)) {
+		$text = elgg_echo("comments") . " ({$comments_count})";
 		$comments_link = elgg_view('output/url', array(
-			'href' => $page->getURL() . '#page-comments',
+			'href' => $page->getURL() . '#comments',
 			'text' => $text,
 			'is_trusted' => true,
 		));
@@ -65,7 +69,7 @@ if($page->allow_comments != "no"){
 // group string
 $group_string = "";
 $container = $page->getContainerEntity();
-if(elgg_instanceof($container, "group") && ($container->getGUID() != elgg_get_page_owner_guid())){
+if (elgg_instanceof($container, "group") && ($container->getGUID() != elgg_get_page_owner_guid())) {
 	$group_link = elgg_view("output/url", array(
 		"text" => $container->name,
 		"href" => $container->getURL(),
@@ -75,19 +79,19 @@ if(elgg_instanceof($container, "group") && ($container->getGUID() != elgg_get_pa
 	$group_string = elgg_echo("river:ingroup", array($group_link));
 }
 
-$metadata = elgg_view_menu('entity', array(
-	'entity' => $vars['entity'],
-	'handler' => 'pages',
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-));
-
-$subtitle = "$editor_text $group_string $comments_link $categories";
+$metadata = '';
 
 // do not show the metadata and controls in widget view
-if (elgg_in_context('widgets') || $revision) {
-	$metadata = '';
+if (!elgg_in_context('widgets') && empty($revision)) {
+	$metadata = elgg_view_menu('entity', array(
+		'entity' => $page,
+		'handler' => 'pages',
+		'sort_by' => 'priority',
+		'class' => 'elgg-menu-hz',
+	));
 }
+
+$subtitle = "$editor_text $group_string $comments_link $categories";
 
 if ($full) {
 	$body = elgg_view('output/longtext', array('value' => $annotation->value));
@@ -111,7 +115,6 @@ if ($full) {
 
 } else {
 	// brief view
-
 	$excerpt = elgg_get_excerpt($page->description);
 
 	$params = array(

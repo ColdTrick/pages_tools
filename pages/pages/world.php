@@ -16,15 +16,14 @@ $options = array(
 	'types' => 'object',
 	'subtypes' => 'page_top',
 	'full_view' => false,
+	'no_results' => elgg_echo('pages:none'),
 );
 
-if(!elgg_is_admin_logged_in() && ($wheres = pages_tools_get_publication_wheres())){
+if (!elgg_is_admin_logged_in() && ($wheres = pages_tools_get_publication_wheres())) {
 	$options["wheres"] = $wheres;
 }
 
-if (!($content = elgg_list_entities($options))) {
-	$content = '<p>' . elgg_echo('pages:none') . '</p>';
-}
+$content = elgg_list_entities($options);
 
 $body = elgg_view_layout('content', array(
 	'filter_context' => 'all',

@@ -7,7 +7,7 @@
 
 $owner = elgg_get_page_owner_entity();
 if (!$owner) {
-	forward('pages/all');
+	forward('', '404');
 }
 
 elgg_push_breadcrumb(elgg_echo("pages"), "pages/all");
@@ -18,10 +18,22 @@ elgg_register_title_button();
 
 $title = elgg_echo('pages:friends');
 
-$content = list_user_friends_objects($owner->guid, 'page_top', 10, false);
-if (!$content) {
-	$content = elgg_echo('pages:none');
+$options = array(
+	'type' => 'object',
+	'subtype' => 'page_top',
+	'full_view' => false,
+	'relationship' => 'friend',
+	'relationship_guid' => $owner->guid,
+	'relationship_join_on' => 'container_guid',
+	'no_results' => elgg_echo('pages:none'),
+);
+
+$wheres = pages_tools_get_publication_wheres();
+if (!empty($wheres)) {
+	$options['wheres'] = $wheres;
 }
+
+$content = elgg_list_entities_from_relationship($options);
 
 $params = array(
 	'filter_context' => 'friends',
