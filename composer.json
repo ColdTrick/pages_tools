@@ -1,0 +1,18 @@
+{
+	"name": "coldtrick/pages_tools",
+	"description": "Different additions and modifications to the pages plugin",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "tools"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/ColdTrick/pages_tools",
+		"issues": "https://github.com/ColdTrick/pages_tools/issues"
+	},
+	"require": {
+		"php": ">=5.3.0",
+		"composer/installers": "^1.0.8"
+	},
+	"require-dev": {
+		"coldtrick/sniffs": "dev-master"
+	}
+}
