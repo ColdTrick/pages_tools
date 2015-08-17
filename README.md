@@ -16,7 +16,7 @@ Contents
 1. Features
 -----------
 - Export Pages to PDF
-	- using the [DOMPDF PHP library][dompdf] currently using version 0.5.2
+	- using the [DOMPDF PHP library][dompdf]
 	
 2. Replaces
 -----------
@@ -30,4 +30,4 @@ Contents
 - images in text not exported
 - font conversion write in dataroot
 
-[dompdf]: http://code.google.com/p/dompdf/
+[dompdf]: https://github.com/dompdf/dompdf/
