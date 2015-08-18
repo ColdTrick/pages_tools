@@ -28,7 +28,7 @@ if (elgg_get_logged_in_user_guid() == $page->getOwnerGuid() || (!empty($containe
 	));
 	if ($children) {
 		$db_prefix = elgg_get_config('dbprefix');
-		$subtype_id = (int)get_subtype_id('object', 'page_top');
+		$subtype_id = (int) get_subtype_id('object', 'page_top');
 		$newentity_cache = is_memcache_available() ? new ElggMemcache('new_entity_cache') : null;
 
 		foreach ($children as $child) {

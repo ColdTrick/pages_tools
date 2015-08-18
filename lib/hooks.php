@@ -259,7 +259,12 @@ function pages_tools_daily_cron_hook($hook, $type, $return_value, $params) {
 	if (!empty($entities)) {
 		foreach ($entities as $entity) {
 			// add river event
-			add_to_river("river/object/page/create", "create", $entity->getOwner(), $entity->getGUID());
+			elgg_create_river_item(array(
+				'view' => 'river/object/page/create',
+				'action_type' => 'create',
+				'subject_guid' => $entity->getOwnerGUID(),
+				'object_guid' => $entity->getGUID(),
+			));
 			
 			// set time created
 			$entity->time_created = $time;

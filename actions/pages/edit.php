@@ -153,7 +153,12 @@ if ($page->save()) {
 	system_message(elgg_echo("pages:saved"));
 
 	if ($new_page && !$page->unpublished) {
-		add_to_river("river/object/page/create", "create", $user->getGUID(), $page->getGUID());
+		elgg_create_river_item(array(
+			'view' => 'river/object/page/create',
+			'action_type' => 'create',
+			'subject_guid' => $user->getGUID(),
+			'object_guid' => $page->getGUID(),
+		));
 	} elseif ($page->getOwnerGUID() != $user->getGUID()) {
 		// not the owner edited the page, notify the owner
 		$subject = elgg_echo("pages_tools:notify:edit:subject", array($page->title));
