@@ -7,11 +7,12 @@ define('DOMPDF_ENABLE_AUTOLOAD', false);
 
 @include_once(dirname(__FILE__) . '/vendor/autoload.php');
 
-require_once(dirname(__FILE__) . "/lib/functions.php");
-require_once(dirname(__FILE__) . "/lib/hooks.php");
+require_once(dirname(__FILE__) . '/lib/functions.php');
+require_once(dirname(__FILE__) . '/lib/hooks.php');
+require_once(dirname(__FILE__) . '/lib/events.php');
 
 // register default Elgg events
-elgg_register_event_handler("init", "system", "pages_tools_init");
+elgg_register_event_handler('init', 'system', 'pages_tools_init');
 
 /**
  * Called during system init
@@ -42,6 +43,11 @@ function pages_tools_init() {
 	elgg_register_plugin_hook_handler("permissions_check:comment", "object", "pages_tools_permissions_comment_hook");
 	elgg_register_plugin_hook_handler("widget_url", "widget_manager", "pages_tools_widget_url_hook");
 	elgg_register_plugin_hook_handler("cron", "daily", "pages_tools_daily_cron_hook");
+	
+	// events
+	elgg_register_event_handler('create', 'object', 'pages_tools_cache_handler');
+	elgg_register_event_handler('update', 'object', 'pages_tools_cache_handler');
+	elgg_register_event_handler('delete', 'object', 'pages_tools_cache_handler');
 	
 	// register actions
 	elgg_register_action("pages/export", dirname(__FILE__) . "/actions/export.php", "public");

@@ -313,3 +313,93 @@ function pages_tools_get_publication_wheres(){
 	
 	return $result;
 }
+
+/**
+ * Gets tree html from cache
+ * 
+ * @param ElggEntity $entity root page to get the cache for
+ * 
+ * @return false|string
+ */
+function pages_tools_get_tree_html_from_cache(ElggEntity $entity) {
+	if (!$entity) {
+		return false;
+	}
+	
+	$user_guid = elgg_get_logged_in_user_guid();
+	if (empty($user_guid)) {
+		$user_guid = 'logged-out';
+	}
+	
+	$file_name = 'tree_cache/' . md5($user_guid . '-cached-' . $entity->getGUID()) . '.html';
+	
+	$fh = new ElggFile();
+	$fh->owner_guid = $entity->getGUID();
+	$fh->setFilename($file_name);
+	
+	if (!$fh->exists()) {
+		return false;
+	}
+
+	return $fh->grabFile();
+}
+
+/**
+ * Saves tree html to cache
+ * 
+ * @param ElggEntity $entity    root page entity to save data with
+ * @param string     $tree_data the data to be saved
+ * 
+ * @return void
+ */
+function pages_tools_save_tree_html_to_cache(ElggEntity $entity, $tree_data = '') {
+	if (!($entity instanceof ElggEntity) || empty($tree_data)) {
+		return;
+	}
+	
+	$user_guid = elgg_get_logged_in_user_guid();
+	if (empty($user_guid)) {
+		$user_guid = 'logged-out';
+	}
+	
+	$file_name = 'tree_cache/' . md5($user_guid . '-cached-' . $entity->getGUID()) . '.html';
+	
+	$fh = new ElggFile();
+	$fh->owner_guid = $entity->getGUID();
+	$fh->setFilename($file_name);
+	
+	$fh->open('write');
+	$fh->write($tree_data);
+	$fh->close();	
+}
+
+/**
+ * Clears tree html cache
+ * 
+ * @param ElggEntity $entity the root entity to flush the cache for
+ * 
+ * @return void
+ */
+function pages_tools_flush_tree_html_cache(ElggEntity $entity) {
+	if (!($entity instanceof ElggEntity)) {
+		return;
+	}
+	
+	$locator = new \Elgg\EntityDirLocator($entity->getGUID());
+	
+	$cache_dir = elgg_get_data_path() . $locator->getPath() . 'tree_cache/';
+	
+	$dh = opendir($cache_dir);
+	if (empty($dh)) {
+		return $return;
+	}
+	
+	while (($filename = readdir($dh)) !== false) {
+		// make sure we have a file
+		if (!is_file($cache_dir . $filename)) {
+			continue;
+		}
+		
+		unlink($cache_dir . $filename);
+	}
+}

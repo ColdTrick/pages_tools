@@ -19,7 +19,8 @@ if (!pages_tools_is_valid_page($selected_page)) {
 }
 
 // make the navigation tree
-if (!pages_tools_register_navigation_tree($selected_page)) {
+$tree = elgg_view('pages_tools/sidebar/tree', ['entity' => $page]);
+if (empty($tree)) {
 	return;
 }
 
@@ -32,10 +33,7 @@ $title .= elgg_format_element('span',
 	elgg_view_icon("info")
 );
 
-// get the navigation menu
-$menu = elgg_view_menu("pages_nav", array("class" => "pages-nav", "sort_by" => "priority"));
-
-$menu = elgg_format_element('div', array('id' => 'pages-tools-navigation', 'class' => 'hidden'), $menu);
+$menu = elgg_format_element('div', array('id' => 'pages-tools-navigation', 'class' => 'hidden'), $tree);
 $menu .= elgg_view("graphics/ajax_loader", array("hidden" => false));
 
 // load the correct JS/css
