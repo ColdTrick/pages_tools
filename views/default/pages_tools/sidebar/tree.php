@@ -1,6 +1,9 @@
 <?php
 
 $entity = elgg_extract('entity', $vars);
+if (!pages_tools_is_valid_page($entity)) {
+	return;
+}
 
 $root_page = pages_tools_get_root_page($entity);
 

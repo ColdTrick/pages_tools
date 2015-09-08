@@ -393,7 +393,7 @@ function pages_tools_flush_tree_html_cache(ElggEntity $entity) {
 	
 	$dh = opendir($cache_dir);
 	if (empty($dh)) {
-		return $return;
+		return;
 	}
 	
 	while (($filename = readdir($dh)) !== false) {
