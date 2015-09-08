@@ -405,3 +405,62 @@ function pages_tools_flush_tree_html_cache(ElggEntity $entity) {
 		unlink($cache_dir . $filename);
 	}
 }
+
+/**
+ * Get the options_values array for the edit form parent selector
+ *
+ * @param ElggEntity $entity the page entity being edited
+ *
+ * @return false|array
+ */
+function pages_tools_get_parent_selector_options(ElggEntity $entity) {
+	
+	if (!pages_tools_is_valid_page($entity)) {
+		return false;
+	}
+	
+	$root_page = pages_tools_get_root_page($entity);
+	$result = array(
+		$root_page->getGUID() => $root_page->title,
+	);
+	
+	$result += pages_tools_get_parent_selector_children($root_page, $entity->getGUID());
+	
+	return $result;
+}
+
+/**
+ * Get the children selector options for the edit form
+ *
+ * @param ElggEntity $entity              the page entity to get the children options for
+ * @param int        $current_entity_guid the current edited page GUID
+ * @param int        $depth               depth of the tree
+ *
+ * @return array
+ */
+function pages_tools_get_parent_selector_children(ElggEntity $entity, $current_entity_guid, $depth = 0) {
+	
+	if (!pages_tools_is_valid_page($entity)) {
+		return array();
+	}
+	
+	$current_entity_guid = sanitise_int($current_entity_guid, false);
+	
+	$children = pages_tools_get_ordered_children($entity);
+	if (empty($children)) {
+		return array();
+	}
+	
+	$result = array();
+	foreach ($children as $child) {
+		if ($child->getGUID() === $current_entity_guid) {
+			continue;
+		}
+		
+		$result[$child->getGUID()] = str_repeat('-', $depth + 1) . ' ' . $child->title;
+		
+		$result += pages_tools_get_parent_selector_children($child, $current_entity_guid, $depth + 1);
+	}
+	
+	return $result;
+}
