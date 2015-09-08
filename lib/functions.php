@@ -316,9 +316,9 @@ function pages_tools_get_publication_wheres(){
 
 /**
  * Gets tree html from cache
- * 
+ *
  * @param ElggEntity $entity root page to get the cache for
- * 
+ *
  * @return false|string
  */
 function pages_tools_get_tree_html_from_cache(ElggEntity $entity) {
@@ -346,13 +346,14 @@ function pages_tools_get_tree_html_from_cache(ElggEntity $entity) {
 
 /**
  * Saves tree html to cache
- * 
+ *
  * @param ElggEntity $entity    root page entity to save data with
  * @param string     $tree_data the data to be saved
- * 
+ *
  * @return void
  */
 function pages_tools_save_tree_html_to_cache(ElggEntity $entity, $tree_data = '') {
+	
 	if (!($entity instanceof ElggEntity) || empty($tree_data)) {
 		return;
 	}
@@ -370,22 +371,23 @@ function pages_tools_save_tree_html_to_cache(ElggEntity $entity, $tree_data = ''
 	
 	$fh->open('write');
 	$fh->write($tree_data);
-	$fh->close();	
+	$fh->close();
 }
 
 /**
  * Clears tree html cache
- * 
+ *
  * @param ElggEntity $entity the root entity to flush the cache for
- * 
+ *
  * @return void
  */
 function pages_tools_flush_tree_html_cache(ElggEntity $entity) {
+	
 	if (!($entity instanceof ElggEntity)) {
 		return;
 	}
 	
-	$locator = new \Elgg\EntityDirLocator($entity->getGUID());
+	$locator = new Elgg_EntityDirLocator($entity->getGUID());
 	
 	$cache_dir = elgg_get_data_path() . $locator->getPath() . 'tree_cache/';
 	
