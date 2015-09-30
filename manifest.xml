@@ -32,4 +32,5 @@
 	</suggests>
 	
 	<category>ColdTrick</category>
+	<category>content</category>
 </plugin_manifest>
