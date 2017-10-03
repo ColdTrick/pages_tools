@@ -15,7 +15,7 @@ $page = elgg_extract('entity', $vars, FALSE);
 $revision = elgg_extract('revision', $vars, FALSE);
 
 if (!$page) {
-	return TRUE;
+	return;
 }
 
 // pages used to use Public for write access
@@ -35,6 +35,9 @@ if ($revision) {
 	));
 	if ($annotation) {
 		$annotation = $annotation[0];
+	} else {
+		elgg_log("Failed to access annotation for page with GUID {$page->guid}", 'WARNING');
+		return;
 	}
 }
 

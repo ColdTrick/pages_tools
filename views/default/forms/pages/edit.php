@@ -6,20 +6,17 @@
  */
 
 // get the form fields
-$variables = elgg_get_config("pages");
-$page = elgg_extract("entity", $vars);
+$variables = elgg_get_config('pages');
+$page = elgg_extract('entity', $vars);
 $user = elgg_get_logged_in_user_entity();
 
-$yesno_options = array(
-	"yes" => elgg_echo("option:yes"),
-	"no" => elgg_echo("option:no")
-);
+$yesno_options = [
+	'yes' => elgg_echo('option:yes'),
+	'no' => elgg_echo('option:no'),
+];
 
 // comments allowed
-$allow_comments = "yes";
-if (!empty($page)) {
-	$allow_comments = $page->allow_comments;
-}
+$allow_comments = $page ? $page->allow_comments : 'yes';
 
 // who can change access
 $can_change_access = true;
@@ -56,6 +53,7 @@ foreach ($variables as $name => $type) {
 		"name" => $name,
 		"value" => elgg_extract($name, $vars),
 		"entity" => ($name == "parent_guid") ? $page : null,
+		'purpose' => ($type == 'write_access') ? 'write': null,
 	));
 	echo "</div>";
 }

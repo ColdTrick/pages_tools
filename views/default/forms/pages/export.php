@@ -1,54 +1,45 @@
 <?php
 
-$page = elgg_extract("entity", $vars);
+$page = elgg_extract('entity', $vars);
 
-$format_options = array(
-	"A4" => elgg_echo("page_tools:export:format:a4"),
-	"letter" => elgg_echo("page_tools:export:format:letter"),
-	"A3" => elgg_echo("page_tools:export:format:a3"),
-	"A5" => elgg_echo("page_tools:export:format:a5"),
-);
+$body = elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('page_tools:export:format'),
+	'name' => 'format',
+	'options_values' => [
+		'A4' => elgg_echo('page_tools:export:format:a4'),
+		'letter' => elgg_echo('page_tools:export:format:letter'),
+		'A3' => elgg_echo('page_tools:export:format:a3'),
+		'A5' => elgg_echo('page_tools:export:format:a5'),
+	],
+]);
 
-$body = "<div>";
-$body .= elgg_echo("page_tools:export:format");
-$body .= elgg_view("input/select", array(
-	"name" => "format",
-	"options_values" => $format_options,
-	"class" => "mls",
-));
-$body .= "</div>";
+$body .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('page_tools:export:include_subpages'),
+	'name' => 'include_children',
+	'value' => 1,
+]);
 
-$body .= "<div>";
-$body .= elgg_view("input/checkbox", array(
-	"name" => "include_children",
-	"value" => 1
-));
-$body .= elgg_echo("page_tools:export:include_subpages");
-$body .= "<br />";
-$body .= elgg_view("input/checkbox", array(
-	"name" => "include_index",
-	"value" => 1
-));
-$body .= elgg_echo("page_tools:export:include_index");
-$body .= "</div>";
+$body .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('page_tools:export:include_index'),
+	'name' => 'include_index',
+	'value' => 1,
+]);
 
-$body .= "<br />";
+$body .= elgg_view_field([
+	'#type' => 'hidden',
+	'name' => 'guid',
+	'value' => $page->guid,
+]);
 
-// buttons
-$body .= "<div class='elgg-foot'>";
-$body .= elgg_view("input/hidden", array(
-	"name" => "guid",
-	"value" => $page->getGUID()
-));
-$body .= elgg_view("input/submit", array(
-	"value" => elgg_echo("export"),
-	"onclick" => "$.colorbox.close();",
-));
-$body .= elgg_view("input/reset", array(
-	"value" => elgg_echo("cancel"),
-	"class" => "float-alt",
-	"onclick" => "$.colorbox.close();",
-));
-$body .= "</div>";
+echo elgg_view_module('info', elgg_echo('export'), $body);
 
-echo elgg_view_module("info", elgg_echo("export"), $body);
+$footer = elgg_view_field([
+	'#type' => 'submit',
+	'value' => elgg_echo('export'),
+	'onclick' => '$.colorbox.close();',
+]);
+
+elgg_set_form_footer($footer);

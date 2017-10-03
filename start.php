@@ -3,7 +3,9 @@
  * The main plugin file
  */
 
-define('DOMPDF_ENABLE_AUTOLOAD', false);
+if (!defined('DOMPDF_ENABLE_AUTOLOAD')) {
+	define('DOMPDF_ENABLE_AUTOLOAD', false);
+}
 
 @include_once(dirname(__FILE__) . '/vendor/autoload.php');
 
@@ -33,12 +35,13 @@ function pages_tools_init() {
 	elgg_register_js("jquery.tree", elgg_get_site_url() . "mod/pages_tools/vendors/jstree/jquery.tree.min.js");
 	elgg_register_css("jquery.tree", elgg_get_site_url() . "mod/pages_tools/vendors/jstree/themes/classic/style.css");
 	
+	elgg_register_ajax_view('pages_tools/export');
+	
 	// add widgets (overrule default pages widget, to add group support)
 	elgg_register_widget_type("pages", elgg_echo("pages"), elgg_echo("pages:widget:description"), array("profile", "dashboard", "groups"));
 	elgg_register_widget_type("index_pages", elgg_echo("pages"), elgg_echo("pages_tools:widgets:index_pages:description"), array("index"), true);
 	
 	// register plugin hooks
-	elgg_register_plugin_hook_handler("route", "pages", "pages_tools_route_pages_hook");
 	elgg_register_plugin_hook_handler("register", "menu:entity", "pages_tools_entity_menu_hook");
 	elgg_register_plugin_hook_handler("permissions_check:comment", "object", "pages_tools_permissions_comment_hook");
 	elgg_register_plugin_hook_handler("widget_url", "widget_manager", "pages_tools_widget_url_hook");

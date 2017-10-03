@@ -18,11 +18,11 @@ if (empty($tree)) {
 	return;
 }
 
-$defaults = array(
+$defaults = [
 	'class' => 'elgg-pages-input-parent-picker',
 	'options_values' => $tree,
-);
+];
 
 $vars = array_merge($defaults, $vars);
 
-echo elgg_view('input/dropdown', $vars);
+echo elgg_view('input/select', $vars);

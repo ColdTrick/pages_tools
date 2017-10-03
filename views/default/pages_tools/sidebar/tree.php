@@ -18,7 +18,7 @@ if (!pages_tools_register_navigation_tree($entity)) {
 }
 
 // get the navigation menu
-$tree_data = elgg_view_menu('pages_nav', array('class' => 'pages-nav', 'sort_by' => 'priority'));
+$tree_data = elgg_view_menu('pages_nav', ['class' => 'pages-nav', 'sort_by' => 'priority']);
 
 pages_tools_save_tree_html_to_cache($root_page, $tree_data);
 

@@ -5,7 +5,7 @@
  * @package ElggPages
  */
 
-$page_guid = (int) get_input('guid');
+$page_guid = elgg_extract('guid', $vars);
 $page = get_entity($page_guid);
 if (!$page) {
 	forward();
@@ -49,24 +49,11 @@ if ($page->canEdit() && $container->canWriteToContainer(0, 'object', 'page')) {
 	));
 }
 
-elgg_load_css("lightbox");
-elgg_load_js("lightbox");
-
-elgg_register_menu_item('title', array(
-	'name' => 'export',
-	'href' => "pages/export/" . $page->getGUID(),
-	'text' => elgg_echo('export'),
-	'link_class' => 'elgg-button elgg-button-action elgg-lightbox',
-	'data-colorbox-opts' => json_encode(array(
-		'title' => false,
-	)),
-));
-
 $body = elgg_view_layout('content', array(
 	'filter' => '',
 	'content' => $content,
 	'title' => $title,
-	'sidebar' => elgg_view('pages/sidebar/navigation'),
+	'sidebar' => elgg_view('pages/sidebar/navigation', $vars),
 ));
 
 echo elgg_view_page($title, $body);

@@ -4,58 +4,6 @@
  */
 
 /**
- * Route on /pages
- *
- * @param string $hook         the name of the hook
- * @param string $type         the type of the hook
- * @param mixed  $return_value current return value
- * @param array  $params       supplied params
- *
- * @return mixed|false
- */
-function pages_tools_route_pages_hook($hook, $type, $return_value, $params) {
-	
-	if (empty($return_value) || !is_array($return_value)) {
-		return $return_value;
-	}
-	
-	$page = elgg_extract("segments", $return_value);
-	switch ($page[0]) {
-		case "export";
-			if (isset($page[1])) {
-				$return_value = false;
-				set_input("page_guid", $page[1]);
-				
-				include(dirname(dirname(__FILE__)) . "/pages/export.php");
-			}
-			break;
-		case "view":
-			$return_value = false;
-			
-			set_input("guid", $page[1]);
-			include(dirname(dirname(__FILE__)) . "/pages/pages/view.php");
-			break;
-		case "owner":
-			$return_value = false;
-			
-			include(dirname(dirname(__FILE__)) . "/pages/pages/owner.php");
-			break;
-		case "friends":
-			$return_value = false;
-			
-			include(dirname(dirname(__FILE__)) . "/pages/pages/friends.php");
-			break;
-		case "all":
-			$return_value = false;
-			
-			include(dirname(dirname(__FILE__)) . "/pages/pages/world.php");
-			break;
-	}
-	
-	return $return_value;
-}
-
-/**
  * Add menu items to entity menu
  *
  * @param string         $hook         the name of the hook
@@ -83,11 +31,8 @@ function pages_tools_entity_menu_hook($hook, $type, $return_value, $params) {
 		"name" => "export",
 		"text" => elgg_view_icon("download"),
 		"title" => elgg_echo("export"),
-		"href" => "pages/export/" . $entity->getGUID(),
+		"href" => "ajax/view/pages_tools/export?page_guid=" . $entity->guid,
 		"link_class" => "elgg-lightbox",
-		"data-colorbox-opts" => json_encode(array(
-			"title" => false,
-		)),
 		"priority" => 500,
 	));
 	

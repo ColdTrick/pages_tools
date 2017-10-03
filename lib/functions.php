@@ -35,20 +35,18 @@ function pages_tools_get_ordered_children(ElggObject $page) {
 	if (!pages_tools_is_valid_page($page)) {
 		return false;
 	}
-	
-	$options = array(
-		"type" => "object",
-		"subtype" => "page",
-		"limit" => false,
-		"metadata_name_value_pairs" => array("parent_guid" => $page->getGUID())
-	);
-	
-	$children = elgg_get_entities_from_metadata($options);
+		
+	$children = elgg_get_entities_from_metadata([
+		'type' => 'object',
+		'subtype' => 'page',
+		'limit' => false,
+		'metadata_name_value_pairs' => ['parent_guid' => $page->guid],
+	]);
 	if (empty($children)) {
 		return false;
 	}
 	 
-	$result = array();
+	$result = [];
 	
 	foreach ($children as $child) {
 		$order = $child->order;
@@ -89,18 +87,18 @@ function pages_tools_render_index(ElggObject $page) {
 	$result = "";
 	
 	foreach ($children as $child) {
-		$content = elgg_view("output/url", array(
+		$content = elgg_view("output/url", [
 			"text" => $child->title,
 			"href" => "#page_" . $child->getGUID(),
 			"title" => $child->title,
-		));
+		]);
 		
 		$child_index = pages_tools_render_index($child);
 		if (!empty($child_index)) {
-			$content .= elgg_format_element('ul', array(), $child_index);
+			$content .= elgg_format_element('ul', [], $child_index);
 		}
 		
-		$result .= elgg_format_element('li', array(), $content);
+		$result .= elgg_format_element('li', [], $content);
 	}
 	
 	return $result;
@@ -177,14 +175,14 @@ function pages_tools_register_navigation_tree(ElggObject $entity) {
 	}
 	
 	// register root page
-	elgg_register_menu_item("pages_nav", array(
+	elgg_register_menu_item("pages_nav", [
 		"name" => "page_" . $root_page->getGUID(),
 		"text" => $root_page->title,
 		"href" => $root_page->getURL(),
 		"rel" => $root_page->getGUID(),
 		"item_class" => $class,
 		"link_class" => "pages-tools-wrap",
-	));
+	]);
 	
 	return true;
 }
@@ -214,7 +212,7 @@ function pages_tools_register_navigation_tree_children(ElggObject $parent_entity
 			$class = "no-edit";
 		}
 		
-		$params = array(
+		$params = [
 			"name" => "page_" . $child->getGUID(),
 			"text" => $child->title,
 			"title" => $child->title,
@@ -223,7 +221,7 @@ function pages_tools_register_navigation_tree_children(ElggObject $parent_entity
 			"item_class" => $class,
 			"parent_name" => "page_" . $parent_entity->getGUID(),
 			"priority" => $order
-		);
+		];
 		
 		if ($depth < 4) {
 			$params["link_class"] = "pages-tools-wrap";
@@ -387,7 +385,7 @@ function pages_tools_flush_tree_html_cache(ElggEntity $entity) {
 		return;
 	}
 	
-	$locator = new Elgg_EntityDirLocator($entity->getGUID());
+	$locator = new \Elgg\EntityDirLocator($entity->getGUID());
 	
 	$cache_dir = elgg_get_data_path() . $locator->getPath() . 'tree_cache/';
 	

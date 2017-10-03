@@ -22,7 +22,7 @@ elgg_register_title_button();
 
 $options = array(
 	'types' => 'object',
-	'subtypes' => 'page_top',
+	'subtype' => 'page_top',
 	'container_guid' => elgg_get_page_owner_guid(),
 	'full_view' => false,
 	'no_results' => elgg_echo('pages:none'),

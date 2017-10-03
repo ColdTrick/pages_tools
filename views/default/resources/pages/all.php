@@ -12,12 +12,12 @@ elgg_push_breadcrumb(elgg_echo('pages'));
 
 elgg_register_title_button();
 
-$options = array(
+$options = [
 	'types' => 'object',
 	'subtypes' => 'page_top',
 	'full_view' => false,
 	'no_results' => elgg_echo('pages:none'),
-);
+];
 
 if (!elgg_is_admin_logged_in() && ($wheres = pages_tools_get_publication_wheres())) {
 	$options["wheres"] = $wheres;

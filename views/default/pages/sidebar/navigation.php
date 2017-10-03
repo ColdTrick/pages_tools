@@ -5,7 +5,7 @@
  * @uses $vars['page'] Page object if manually setting selected item
  */
 
-$page_guid = (int) get_input("guid");
+$page_guid = (int) elgg_extract('guid', $vars);
 $page = false;
 if (!empty($page_guid)) {
 	$page = get_entity($page_guid);
