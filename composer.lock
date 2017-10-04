@@ -4,21 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c20780b895eb5b6b67371209f6e1f8e2",
+    "content-hash": "19c3d94cbd8625c901a60e394fbd2e17",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.21",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
+                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
-                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "url": "https://api.github.com/repos/composer/installers/zipball/9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
+                "reference": "9ce17fb70e9a38dd8acff0636a29f5cf4d575c1b",
                 "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
             },
             "replace": {
                 "roundcube/plugin-installer": "*",
@@ -28,16 +31,16 @@
                 "composer/composer": "1.0.*@dev",
                 "phpunit/phpunit": "4.1.*"
             },
-            "type": "composer-installer",
+            "type": "composer-plugin",
             "extra": {
-                "class": "Composer\\Installers\\Installer",
+                "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Composer\\Installers\\": "src/"
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -52,67 +55,86 @@
                 }
             ],
             "description": "A multi-framework Composer library installer",
-            "homepage": "http://composer.github.com/installers/",
+            "homepage": "https://composer.github.io/installers/",
             "keywords": [
                 "Craft",
                 "Dolibarr",
+                "Eliasis",
                 "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
                 "MODX Evo",
+                "Mautic",
+                "Maya",
                 "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
                 "SMF",
                 "Thelia",
                 "WolfCMS",
                 "agl",
                 "aimeos",
                 "annotatecms",
+                "attogram",
                 "bitrix",
                 "cakephp",
                 "chef",
+                "cockpit",
                 "codeigniter",
                 "concrete5",
                 "croogo",
                 "dokuwiki",
                 "drupal",
+                "eZ Platform",
                 "elgg",
+                "expressionengine",
                 "fuelphp",
                 "grav",
                 "installer",
+                "itop",
                 "joomla",
                 "kohana",
                 "laravel",
+                "lavalite",
                 "lithium",
                 "magento",
                 "mako",
                 "mediawiki",
                 "modulework",
                 "moodle",
+                "osclass",
                 "phpbb",
                 "piwik",
                 "ppi",
                 "puppet",
+                "reindex",
                 "roundcube",
                 "shopware",
                 "silverstripe",
+                "sydes",
                 "symfony",
                 "typo3",
                 "wordpress",
+                "yawik",
                 "zend",
                 "zikula"
             ],
-            "time": "2015-02-18 17:17:01"
+            "time": "2017-08-09T07:53:48+00:00"
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v0.6.1",
+            "version": "v0.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "cf7d8a0a27270418850cc7d7ea532159e5eeb3eb"
+                "reference": "cc06008f75262510ee135b8cbb14e333a309f651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/cf7d8a0a27270418850cc7d7ea532159e5eeb3eb",
-                "reference": "cf7d8a0a27270418850cc7d7ea532159e5eeb3eb",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/cc06008f75262510ee135b8cbb14e333a309f651",
+                "reference": "cc06008f75262510ee135b8cbb14e333a309f651",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +162,7 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2014-03-11 01:59:52"
+            "time": "2015-12-07T04:07:13+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -174,7 +196,7 @@
             ],
             "description": "A library to read, parse, export and make subsets of different types of font files.",
             "homepage": "https://github.com/PhenX/php-font-lib",
-            "time": "2014-02-01 15:22:28"
+            "time": "2014-02-01T15:22:28+00:00"
         }
     ],
     "packages-dev": [
@@ -203,63 +225,40 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Elgg coding standards",
-            "time": "2015-02-17 14:47:25"
+            "time": "2015-02-17T14:47:25+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.3.3",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666"
+                "reference": "3c2d0a0fe39684ba0c1eb842a6a775d0b938d699"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c1a26c729508f73560c1a4f767f60b8ab6b4a666",
-                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/3c2d0a0fe39684ba0c1eb842a6a775d0b938d699",
+                "reference": "3c2d0a0fe39684ba0c1eb842a6a775d0b938d699",
                 "shasum": ""
             },
             "require": {
+                "ext-simplexml": "*",
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
-                "php": ">=5.1.2"
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
             },
             "bin": [
-                "scripts/phpcs",
-                "scripts/phpcbf"
+                "bin/phpcs",
+                "bin/phpcbf"
             ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "3.x-dev"
                 }
-            },
-            "autoload": {
-                "classmap": [
-                    "CodeSniffer.php",
-                    "CodeSniffer/CLI.php",
-                    "CodeSniffer/Exception.php",
-                    "CodeSniffer/File.php",
-                    "CodeSniffer/Fixer.php",
-                    "CodeSniffer/Report.php",
-                    "CodeSniffer/Reporting.php",
-                    "CodeSniffer/Sniff.php",
-                    "CodeSniffer/Tokens.php",
-                    "CodeSniffer/Reports/",
-                    "CodeSniffer/Tokenizers/",
-                    "CodeSniffer/DocGenerators/",
-                    "CodeSniffer/Standards/AbstractPatternSniff.php",
-                    "CodeSniffer/Standards/AbstractScopeSniff.php",
-                    "CodeSniffer/Standards/AbstractVariableSniff.php",
-                    "CodeSniffer/Standards/IncorrectPatternException.php",
-                    "CodeSniffer/Standards/Generic/Sniffs/",
-                    "CodeSniffer/Standards/MySource/Sniffs/",
-                    "CodeSniffer/Standards/PEAR/Sniffs/",
-                    "CodeSniffer/Standards/PSR1/Sniffs/",
-                    "CodeSniffer/Standards/PSR2/Sniffs/",
-                    "CodeSniffer/Standards/Squiz/Sniffs/",
-                    "CodeSniffer/Standards/Zend/Sniffs/"
-                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -277,7 +276,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-06-24 03:16:23"
+            "time": "2017-09-19T22:47:14+00:00"
         }
     ],
     "aliases": [],
@@ -287,8 +286,6 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.3.0"
-    },
+    "platform": [],
     "platform-dev": []
 }

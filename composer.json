@@ -9,11 +9,13 @@
 		"issues": "https://github.com/ColdTrick/pages_tools/issues"
 	},
 	"require": {
-		"php": ">=5.3.0",
 		"composer/installers": "^1.0.8",
-		"dompdf/dompdf" : "0.6.*"
+		"dompdf/dompdf" : "~0.6.0"
 	},
 	"require-dev": {
 		"coldtrick/sniffs": "dev-master"
+	},
+	"conflict": {
+		"elgg/elgg": "<2.3"
 	}
 }
