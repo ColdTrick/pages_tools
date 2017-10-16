@@ -1,6 +1,26 @@
 Version history
 ===============
 
+3.0 (2017-10-16):
+
+- added: Spanish translation
+- changed: increased Elgg requirement to version 2.3
+- changed: updated plugin for Elgg 2.3
+
+2.0 (2015-09-30)
+
+- added: caching of sidebar menu html contents
+- added: composer support
+- added: notice if someone is already editing a page
+- changed: updated dompdf library
+- changed: updated readme
+- changes for Elgg 1.9
+- fixed: allow group owner/admins to delete pages
+- fixed: line endings
+- fixed: parent page selector not showing correct content
+- fixed: php warning
+- fixed: using wrong class name
+
 1.2 (2015-08-17):
 
 - added: notice if someone is already editing a page
