@@ -1,19 +1,10 @@
 <?php
 
-$widget = elgg_extract("entity", $vars);
+$widget = elgg_extract('entity', $vars);
 
-$pages_count = (int) $widget->pages_count;
-if ($pages_count < 1) {
-	$pages_count = 8;
-}
-
-echo "<div>";
-echo elgg_echo("pages:num");
-echo elgg_view("input/text", array(
-	"name" => "params[pages_count]",
-	"value" => $pages_count,
-	"size" => "4",
-	"maxlength" => "4",
-	"class" => "mls",
-));
-echo "</div>";
+echo elgg_view('object/widget/edit/num_display', [
+	'name' => 'pages_count',
+	'entity' => $widget,
+	'default' => 8,
+	'label' => elgg_echo('pages:num'),
+]);

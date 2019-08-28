@@ -5,45 +5,39 @@
  * @package ElggPages
  */
 
-$widget = elgg_extract("entity", $vars);
+$widget = elgg_extract('entity', $vars);
 
-$pages_num = (int) $widget->pages_num;
-if ($pages_num < 1) {
-	$pages_num = 4;
-}
+$num_display = (int) $widget->pages_num ?: 4;
 
-$options = array(
-	"type" => "object",
-	"subtype" => "page_top",
-	"container_guid" => $widget->getOwnerGUID(),
-	"limit" => $pages_num,
-	"full_view" => FALSE,
-	"pagination" => FALSE,
-);
+$content = elgg_list_entities([
+	'type' => 'object',
+	'subtype' => 'page',
+	'container_guid' => $widget->owner_guid,
+	'metadata_name_value_pairs' => [
+		'parent_guid' => 0,
+	],
+	'limit' => $num_display,
+	'pagination' => false,
+]);
 
-$wheres = pages_tools_get_publication_wheres();
-if (!empty($wheres)) {
-	$options["wheres"] = $wheres;
-}
-
-$content = elgg_list_entities($options);
 if (empty($content)) {
-	echo elgg_echo("pages:none");
+	echo elgg_echo('pages:none');
 	return;
 }
 
+echo $content;
+
 $owner = $widget->getOwnerEntity();
-if (elgg_instanceof($owner, "group")) {
-	$url = "pages/group/" . $owner->getGUID() . "/all";
+if ($owner instanceof \ElggGroup) {
+	$url = elgg_generate_url('collection:object:page:group', ['guid' => $owner->guid]);
 } else {
-	$url = "pages/owner/" . $owner->username;
+	$url = elgg_generate_url('collection:object:page:owner', ['username' => $owner->username]);
 }
 
-$more_link = elgg_view('output/url', array(
+$more_link = elgg_view('output/url', [
 	'href' => $url,
 	'text' => elgg_echo('pages:more'),
 	'is_trusted' => true,
-));
-$content .= "<span class='elgg-widget-more'>" . $more_link . "</span>";
+]);
 
-echo $content;
+echo elgg_format_element('div', ['class' => 'elgg-widget-more'], $more_link);

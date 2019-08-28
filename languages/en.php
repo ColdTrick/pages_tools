@@ -2,7 +2,6 @@
 
 return array(
 	// general
-	'pages_tools:allow_comments' => "Allow comments",
 	'pages_tools:unpublished' => "Unpublished",
 	
 	// notification
@@ -41,11 +40,11 @@ You can view your page here:
 	'pages_tools:navigation:tooltip' => "Did you know you can drag-and-drop pages to reorder the navigation tree?",
 	
 	// widget
-	'pages_tools:widgets:index_pages:description' => "Show the latest pages on your community",
+	'widgets:index_pages:name' => "Pages",
+	'widgets:index_pages:description' => "Show the latest pages on your community",
 	
 	// settings
-	'pages_tools:settings:advanced_publication' => "Allow advanced publication options",
-	'pages_tools:settings:advanced_publication:description' => "With this users can select a publication and expiration date for pages. Requires a working daily CRON.",
+	'pages_tools:settings:enable_export' => "Allow export to PDF",
 	
 	// edit
 	'pages_tools:label:publication_options' => "Publication options",

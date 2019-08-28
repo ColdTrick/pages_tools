@@ -58,28 +58,10 @@ elgg.pages_tools.tree.init = function() {
 			}
 		});
 	}
-
-	// search for edit form with lock timer
-	if ($("#pages-tools-edit-guid").length) {
-		setTimeout(elgg.pages_tools.edittimer, 30000);
-	}
 }
 
 elgg.pages_tools.tree.get_guid_from_tree_element = function(element) {
 	return $(element).find('a:first').attr('rel');
-};
-
-elgg.pages_tools.edittimer = function() {
-
-	var guid = $("#pages-tools-edit-guid").val();
-	elgg.action("pages_tools/update_edit_notice", {
-		data: {
-			guid: guid
-		},
-		success: function() {
-			setTimeout(elgg.pages_tools.edittimer, 30000);
-		}
-	});
 };
 
 elgg.register_hook_handler("init", "system", elgg.pages_tools.tree.init);

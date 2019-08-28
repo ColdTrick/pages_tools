@@ -26,7 +26,6 @@ Je kunt de pagina hier bekijken:
   'pages_tools:publication_date:description' => 'Als je hier een datum selecteert zal de pagina niet worden gepubliceerd voor de aangegeven datum.',
   'pages_tools:label:expiration_date' => 'Verval datum (optioneel)',
   'pages_tools:expiration_date:description' => 'De pagina zal niet meer gepubliceerd zijn na de geselecteerde datum.',
-  'pages_tools:allow_comments' => 'Sta commentaar toe',
   'pages_tools:notify:edit:subject' => 'Je pagina \'%s\' is bijgewerkt',
   'pages_tools:notify:edit:message' => 'Hallo,
 
@@ -40,7 +39,7 @@ Je pagina \'%s\' is bijgewerkt door %s. Om de nieuwe versie te zien, klik hier:
   'page_tools:export:include_subpages' => 'Inclusief subpagina\'s',
   'page_tools:export:include_index' => 'Inclusief index',
   'pages_tools:export:index' => 'Inhoudsopgave',
-  'pages_tools:actions:reorder:error:subpages' => 'Er zijn geen pagina\'s opgegeven om te herordenen',
-  'pages_tools:actions:reorder:success' => 'De pagina\'s zijn succesvol herordenend',
+  'pages_tools:actions:reorder:error:subpages' => 'Er zijn geen pagina\'s opgegeven om te sorteren',
+  'pages_tools:actions:reorder:success' => 'De pagina\'s zijn succesvol gesorteerd',
 );
 add_translation("nl", $language);

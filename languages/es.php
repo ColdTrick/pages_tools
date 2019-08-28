@@ -5,7 +5,6 @@
  */
 
 return array (
-  'pages_tools:allow_comments' => 'Permitir comentarios',
   'pages_tools:unpublished' => 'Despublicar',
   'pages_tools:notify:edit:subject' => 'Su pagina \'%s\' fue editado',
   'pages_tools:notify:edit:message' => 'Hola,
@@ -31,8 +30,6 @@ Puedes ver tu página aquí:
   'page_tools:export:include_index' => 'Incluir índice',
   'pages_tools:navigation:tooltip' => '¿Sabías que puedes arrastrar y soltar páginas para reordenar el árbol de navegación?',
   'pages_tools:widgets:index_pages:description' => 'Mostrar las últimas páginas de tu comunidad',
-  'pages_tools:settings:advanced_publication' => 'Permitir opciones avanzadas de publicación',
-  'pages_tools:settings:advanced_publication:description' => 'Con esto los usuarios pueden seleccionar una publicación y una fecha de caducidad para las páginas. Requiere un diario de trabajo CRON.',
   'pages_tools:label:publication_options' => 'Opciones de publicación',
   'pages_tools:label:publication_date' => 'Fecha de publicación (opcional)',
   'pages_tools:publication_date:description' => 'Cuando selecciona una fecha aquí, la página no se publicará hasta la fecha seleccionada.',

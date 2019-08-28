@@ -1,36 +1,29 @@
 <?php
 
-$widget = elgg_extract("entity", $vars);
+$widget = elgg_extract('entity', $vars);
 
-$count = (int) $widget->pages_count;
-if ($count < 1) {
-	$count = 8;
-}
+$count = (int) $widget->pages_count ?: 8;
 
-$options = array(
-	"type" => "object",
-	"subtype" => "page_top",
-	"limit" => $count,
-	"full_view" => false,
-	"pagination" => false
-);
-
-$wheres = pages_tools_get_publication_wheres();
-if (!empty($wheres)) {
-	$options["wheres"] = $wheres;
-}
-
-$result = elgg_list_entities($options);
+$result = elgg_list_entities([
+	'type' => 'object',
+	'subtype' => 'page',
+	'metadata_name_value_pairs' => [
+		'parent_guid' => 0,
+	],
+	'limit' => $count,
+	'pagination' => false,
+]);
 if (empty($result)) {
-	echo elgg_echo("pages:none");
+	echo elgg_echo('pages:none');
 	return;
 }
 
-$more_link = elgg_view("output/url", array(
-	"href" => "pages/all",
-	"text" => elgg_echo("pages:more"),
-	"is_trusted" => true
-));
-$result .= "<span class='elgg-widget-more'>" . $more_link . "</span>";
-
 echo $result;
+
+$more_link = elgg_view('output/url', [
+	'href' => elgg_generate_url('collection:object:page:all'),
+	'text' => elgg_echo('pages:more'),
+	'is_trusted' => true,
+]);
+
+echo elgg_format_element('div', ['class' => 'elgg-widget-more'], $more_link);
