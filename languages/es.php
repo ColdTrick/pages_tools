@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This file was created by Translation Editor v7.0.4
  * On 2019-09-03 11:49
