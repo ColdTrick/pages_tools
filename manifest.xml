@@ -2,13 +2,13 @@
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
 	<name>Pages Tools</name>
 	<author>ColdTrick IT Solutions</author>
-	<version>3.0</version>
+	<version>4.0-beta</version>
 	<description>Different additions/modifications to the pages plugin.</description>
 	<id>pages_tools</id>
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/ColdTrick/pages_tools</repository>
 	<bugtracker>https://github.com/ColdTrick/pages_tools/issues</bugtracker>
-	<copyright>(C) ColdTrick IT Solutions 2012 - 2017</copyright>
+	<copyright>(C) ColdTrick IT Solutions 2012 - 2019</copyright>
 	<license>GNU General Public License version 2</license>
  	
  	<requires>
