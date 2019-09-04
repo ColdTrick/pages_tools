@@ -1,6 +1,12 @@
 Version history
 ===============
 
+4.0 (2019-09-04):
+
+- changed: increased minimal Elgg requirement to v3.1
+- changed: updated all the code for Elgg 3
+- fixed: correct license for composer
+
 3.0 (2017-10-16):
 
 - added: Spanish translation
