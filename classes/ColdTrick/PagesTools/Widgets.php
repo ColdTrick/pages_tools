@@ -30,7 +30,7 @@ class Widgets {
 			case 'pages':
 				$owner = $widget->getOwnerEntity();
 				
-				if (elgg_instanceof($owner, 'group')) {
+				if ($owner instanceof \ElggGroup) {
 					$return_value = 'pages/group/' . $owner->getGUID() . '/all';
 				} else {
 					$return_value = 'pages/owner/' . $owner->username;
