@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0.1 (2019-11-26):
+
+- several small chores/fixes
+
 4.0 (2019-09-04):
 
 - changed: increased minimal Elgg requirement to v3.1
