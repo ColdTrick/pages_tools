@@ -33,8 +33,6 @@ return [
 			'menu:entity' => [
 				'\ColdTrick\PagesTools\Menus::registerExportPage' => [],
 			],
-		],
-		'register' => [
 			'menu:pages_nav' => [
 				'\ColdTrick\PagesTools\Menus::orderPagesNav' => ['priority' => 999],
 			],
