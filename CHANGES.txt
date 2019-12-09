@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0.2 (2019-12-09):
+
+- fixed: export menu item is available again
+
 4.0.1 (2019-11-26):
 
 - several small chores/fixes
