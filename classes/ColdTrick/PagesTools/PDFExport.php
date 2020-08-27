@@ -5,6 +5,8 @@
 
 namespace ColdTrick\PagesTools;
 
+use Dompdf\Dompdf;
+
 class PDFExport {
 	
 	/**
@@ -18,41 +20,37 @@ class PDFExport {
 	 * @return string contents for PDF
 	 */
 	public static function toPDF(\ElggPage $entity, string $format = 'a4', bool $include_index = false, bool $include_subpages = false) {
-		if (!defined('DOMPDF_ENABLE_AUTOLOAD')) {
-			define('DOMPDF_ENABLE_AUTOLOAD', false);
-		}
-		
 		// begin of output
-		$html = "";
+		$html = '';
 		
 		// make index
 		if ($include_index) {
-			$html .= "<h3>" . elgg_echo("pages_tools:export:index") . "</h3>";
+			$html .= elgg_format_element('h3', [], elgg_echo('pages_tools:export:index'));
 			
-			$html .= "<ul>";
-			$html .= "<li>" . elgg_view("output/url", [
-				"text" => $entity->getDisplayName(),
-				"href" => "#page_" . $entity->guid,
-				"title" => $entity->getDisplayName(),
-			]) . "</li>";
+			$html .= '<ul>';
+			$html .= elgg_format_element('li', [], elgg_view('output/url', [
+				'text' => $entity->getDisplayName(),
+				'href' => '#page_' . $entity->guid,
+				'title' => $entity->getDisplayName(),
+			]));
 			
 			// include subpages
 			if ($include_subpages && ($sub_index = self::renderIndex($entity))) {
 				$html .= $sub_index;
 			}
 			
-			$html .= "</ul>";
-			$html .= "<p style='page-break-after:always;'></p>";
+			$html .= '</ul>';
+			$html .= elgg_format_element('p', ['style' => 'page-break-after:always;'], '');
 		}
 		
 		// print page
-		$html .= "<h3>" . elgg_view("output/url", [
-			"text" => $entity->getDisplayName(),
-			"href" => false,
-			"name" => "page_" . $entity->guid
-		]) . "</h3>";
-		$html .= elgg_view("output/longtext", ["value" => $entity->description]);
-		$html .= "<p style='page-break-after:always;'></p>";
+		$html .= elgg_format_element('h3', [], elgg_view('output/url', [
+			'text' => $entity->getDisplayName(),
+			'href' => false,
+			'name' => 'page_' . $entity->guid
+		]));
+		$html .= elgg_view('output/longtext', ['value' => $entity->description]);
+		$html .= elgg_format_element('p', ['style' => 'page-break-after:always;'], '');
 		
 		// print subpages
 		if ($include_subpages && ($child_pages = self::renderChildPages($entity))) {
@@ -60,36 +58,31 @@ class PDFExport {
 		}
 		
 		// load library
-		require_once(elgg_get_plugins_path() . 'pages_tools/vendor/dompdf/dompdf/dompdf_config.inc.php');
-		
-		$dompdf = new \DOMPDF();
+		$dompdf = new Dompdf();
 		// set correct page format
-		$dompdf->set_paper($format);
+		$dompdf->setPaper($format);
 		// set contents
-		$dompdf->load_html($html);
+		$dompdf->loadHtml($html);
 		$dompdf->render();
 		// output as download
-		$dompdf->stream(elgg_get_friendly_title($entity->getDisplayName()) . ".pdf");
+		$dompdf->stream(elgg_get_friendly_title($entity->getDisplayName()) . '.pdf');
 	}
 	
 	/**
 	 * Get the ordered list sub pages
 	 *
-	 * @param ElggObject $page the page to get subpages for
+	 * @param \ElggPage $page the page to get subpages for
 	 *
-	 * @return false|ElggObject[]
+	 * @return false|\ElggPage[]
 	 */
 	protected static function getOrderedChildren(\ElggPage $page) {
-		
-		if (!$page instanceof \ElggPage) {
-			return false;
-		}
-			
 		$children = elgg_get_entities([
 			'type' => 'object',
 			'subtype' => 'page',
 			'limit' => false,
-			'metadata_name_value_pairs' => ['parent_guid' => $page->guid],
+			'metadata_name_value_pairs' => [
+				'parent_guid' => $page->guid,
+			],
 		]);
 		if (empty($children)) {
 			return false;
@@ -118,7 +111,7 @@ class PDFExport {
 	/**
 	 * Render the index in the export for every page below the provided page
 	 *
-	 * @param ElggObject $page the page to render for
+	 * @param \ElggPage $page the page to render for
 	 *
 	 * @return false|string
 	 */
@@ -129,13 +122,13 @@ class PDFExport {
 			return false;
 		}
 		
-		$result = "";
+		$result = '';
 		
 		foreach ($children as $child) {
-			$content = elgg_view("output/url", [
-				"text" => $child->getDisplayName(),
-				"href" => "#page_" . $child->guid,
-				"title" => $child->getDisplayName(),
+			$content = elgg_view('output/url', [
+				'text' => $child->getDisplayName(),
+				'href' => '#page_' . $child->guid,
+				'title' => $child->getDisplayName(),
 			]);
 			
 			$child_index = self::renderIndex($child);
@@ -152,7 +145,7 @@ class PDFExport {
 	/**
 	 * Render the subpages content for export of the child pages
 	 *
-	 * @param ElggObject $page the page to begin with
+	 * @param \ElggPage $page the page to begin with
 	 *
 	 * @return false|string
 	 */
@@ -163,18 +156,18 @@ class PDFExport {
 			return false;
 		}
 		
-		$result = "";
+		$result = '';
 		
 		foreach ($children as $child) {
 			// title
-			$result .= "<h3>" . elgg_view("output/url", [
-				"text" => $child->getDisplayName(),
-				"href" => false,
-				"name" => "page_" . $child->guid,
-			]) . "</h3>";
+			$result .= elgg_format_element('h3', [], elgg_view('output/url', [
+				'text' => $child->getDisplayName(),
+				'href' => false,
+				'name' => 'page_' . $child->guid,
+			]));
 			// content
-			$result .= elgg_view("output/longtext", ["value" => $child->description]);
-			$result .= "<p style='page-break-after:always;'></p>";
+			$result .= elgg_view('output/longtext', ['value' => $child->description]);
+			$result .= elgg_format_element('p', ['style' => 'page-break-after:always;'], '');
 			
 			// sub pages
 			$child_pages = self::renderChildPages($child);
