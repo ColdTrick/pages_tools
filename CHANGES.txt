@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0.3 (2020-09-01):
+
+- changed: updated dompdf library
+
 4.0.2 (2019-12-09):
 
 - fixed: export menu item is available again
