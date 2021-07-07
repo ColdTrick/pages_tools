@@ -1,8 +1,9 @@
 {
 	"name": "coldtrick/pages_tools",
 	"description": "Different additions and modifications to the pages plugin",
+	"homepage": "https://www.coldtrick.com",
 	"type": "elgg-plugin",
-	"keywords": ["elgg", "plugin", "tools"],
+	"keywords": ["elgg", "plugin", "content"],
 	"license": "GPL-2.0-only",
 	"support": {
 		"source": "https://github.com/ColdTrick/pages_tools",
@@ -10,13 +11,13 @@
 	},
 	"require": {
 		"composer/installers": "^1.0.8",
-		"dompdf/dompdf" : "~0.8.0"
+		"dompdf/dompdf" : "~1.0.2"
 	},
 	"require-dev": {
 		"coldtrick/sniffs": "dev-master",
 		"coldtrick/releases": "dev-master"
 	},
 	"conflict": {
-		"elgg/elgg": "<3.1"
+		"elgg/elgg": "<4.0"
 	}
 }

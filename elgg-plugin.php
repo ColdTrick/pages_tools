@@ -1,9 +1,14 @@
 <?php
 
-use ColdTrick\PagesTools\Bootstrap;
-
 return [
-	'bootstrap' => Bootstrap::class,
+	'plugin' => [
+		'version' => '4.0.3',
+		'dependencies' => [
+			'pages' => [
+				'position' => 'after',
+			],
+		],
+	],
 	'settings' => [
 		'enable_export' => 0,
 	],
@@ -11,7 +16,9 @@ return [
 		'pages/export' => ['access' => 'public'],
 		'pages/reorder' => [],
 	],
-	
+	'view_options' => [
+		'forms/pages/export' => ['ajax' => true],
+	],
 	'widgets' => [
 		'index_pages' => [
 			'context' => ['index'],
@@ -22,7 +29,6 @@ return [
 			'context' => ['profile', 'dashboard', 'groups'],
 		],
 	],
-	
 	'hooks' => [
 		'entity:url' => [
 			'object' => [

@@ -31,16 +31,12 @@ class Widgets {
 				$owner = $widget->getOwnerEntity();
 				
 				if ($owner instanceof \ElggGroup) {
-					$return_value = 'pages/group/' . $owner->getGUID() . '/all';
-				} else {
-					$return_value = 'pages/owner/' . $owner->username;
+					return 'pages/group/' . $owner->guid . '/all';
 				}
-				break;
+				
+				return 'pages/owner/' . $owner->username;
 			case 'index_pages':
-				$return_value = 'pages/all';
-				break;
+				return 'pages/all';
 		}
-		
-		return $return_value;
 	}
 }
