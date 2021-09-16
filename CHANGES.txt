@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.0 (2021-09-16):
+
+- changed: update for Elgg 4
+
 4.0.3 (2020-09-01):
 
 - changed: updated dompdf library
