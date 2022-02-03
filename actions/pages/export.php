@@ -12,8 +12,8 @@ $include_subpages = (bool) get_input('include_children');
 $include_index = (bool) get_input('include_index');
 
 $page = get_entity($guid);
-if (!$page instanceof ElggPage) {
-	throw new EntityNotFoundException();
+if (!$page instanceof \ElggPage) {
+	return elgg_error_response(elgg_echo('actionunauthorized'));
 }
 
 // this could take a while
