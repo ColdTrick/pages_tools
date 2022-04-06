@@ -11,7 +11,7 @@
 	},
 	"require": {
 		"composer/installers": "^1.0.8",
-		"dompdf/dompdf" : "~1.0.2"
+		"dompdf/dompdf" : "~1.2.1"
 	},
 	"require-dev": {
 		"coldtrick/sniffs": "dev-master"
