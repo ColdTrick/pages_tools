@@ -4,7 +4,6 @@
  */
 
 use ColdTrick\PagesTools\PDFExport;
-use Elgg\Exceptions\Http\EntityNotFoundException;
 
 $guid = (int) get_input('guid');
 $format = strtolower(get_input('format', 'a4'));
