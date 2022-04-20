@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.0.2 (2022-04-20):
+
+- several small chores/fixes
+
 5.0.1 (2022-02-16):
 
 - several small chores/fixes
