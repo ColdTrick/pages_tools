@@ -17,7 +17,7 @@
 		"coldtrick/sniffs": "dev-master"
 	},
 	"conflict": {
-		"elgg/elgg": "<4.0"
+		"elgg/elgg": "<4.3"
 	},
 	"config": {
 		"allow-plugins": {
