@@ -28,7 +28,7 @@ if ($owner instanceof \ElggGroup) {
 }
 
 if (!empty($url)) {
-	$options['widget_more'] = elgg_elgg_view_url($url, elgg_echo('pages:more'));
+	$options['widget_more'] = elgg_view_url($url, elgg_echo('pages:more'));
 }
 
 echo elgg_list_entities($options);
