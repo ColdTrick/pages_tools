@@ -1,6 +1,11 @@
 Version history
 ===============
 
+6.0 (2022-08-24):
+
+- changed: updated DOMPDF to v2.0
+- changed: updated for Elgg 4.3
+
 5.0.2 (2022-04-20):
 
 - several small chores/fixes

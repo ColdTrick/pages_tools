@@ -2,7 +2,7 @@
 
 return [
 	'plugin' => [
-		'version' => '5.0.2',
+		'version' => '6.0',
 		'dependencies' => [
 			'pages' => [
 				'position' => 'after',
