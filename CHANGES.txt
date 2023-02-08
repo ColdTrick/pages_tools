@@ -1,6 +1,10 @@
 Version history
 ===============
 
+6.0.1 (2023-02-08):
+
+- several small chores/fixes
+
 6.0 (2022-08-24):
 
 - changed: updated DOMPDF to v2.0
