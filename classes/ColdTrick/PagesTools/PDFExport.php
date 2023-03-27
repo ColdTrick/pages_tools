@@ -7,6 +7,9 @@ namespace ColdTrick\PagesTools;
 
 use Dompdf\Dompdf;
 
+/**
+ * Handles PDF exports
+ */
 class PDFExport {
 	
 	/**
@@ -35,8 +38,8 @@ class PDFExport {
 			]));
 			
 			// include subpages
-			if ($include_subpages && ($sub_index = self::renderIndex($entity))) {
-				$html .= $sub_index;
+			if ($include_subpages) {
+				$html .= self::renderIndex($entity);
 			}
 			
 			$html .= '</ul>';
@@ -53,8 +56,8 @@ class PDFExport {
 		$html .= elgg_format_element('p', ['style' => 'page-break-after:always;'], '');
 		
 		// print subpages
-		if ($include_subpages && ($child_pages = self::renderChildPages($entity))) {
-			$html .= $child_pages;
+		if ($include_subpages) {
+			$html .= self::renderChildPages($entity);
 		}
 		
 		// load library
@@ -113,13 +116,13 @@ class PDFExport {
 	 *
 	 * @param \ElggPage $page the page to render for
 	 *
-	 * @return false|string
+	 * @return string
 	 */
-	protected static function renderIndex(\ElggPage $page) {
+	protected static function renderIndex(\ElggPage $page): string {
 		
 		$children = self::getOrderedChildren($page);
 		if (empty($children)) {
-			return false;
+			return '';
 		}
 		
 		$result = '';
@@ -147,13 +150,13 @@ class PDFExport {
 	 *
 	 * @param \ElggPage $page the page to begin with
 	 *
-	 * @return false|string
+	 * @return string
 	 */
-	protected static function renderChildPages(\ElggPage $page) {
+	protected static function renderChildPages(\ElggPage $page): string {
 		
 		$children = self::getOrderedChildren($page);
 		if (empty($children)) {
-			return false;
+			return '';
 		}
 		
 		$result = '';

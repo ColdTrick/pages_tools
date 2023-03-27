@@ -5,18 +5,21 @@
 
 namespace ColdTrick\PagesTools;
 
+/**
+ * Menu callbacks
+ */
 class Menus {
 		
 	/**
 	 * Adds export menu item
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:entity'
+	 * @param \Elgg\Event $event 'register', 'menu:entity'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function registerExportPage(\Elgg\Hook $hook) {
+	public static function registerExportPage(\Elgg\Event $event) {
 		
-		$entity = $hook->getEntityParam();
+		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggPage) {
 			return;
 		}
@@ -25,7 +28,7 @@ class Menus {
 			return;
 		}
 		
-		$return_value = $hook->getValue();
+		$return_value = $event->getValue();
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'export',
@@ -41,19 +44,20 @@ class Menus {
 	/**
 	 * Orders the pages navigation menu
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:pages_nav'
+	 * @param \Elgg\Event $event 'register', 'menu:pages_nav'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function orderPagesNav(\Elgg\Hook $hook) {
+	public static function orderPagesNav(\Elgg\Event $event) {
 		$load_js = false;
 		
-		$return_value = $hook->getValue();
+		$return_value = $event->getValue();
 		foreach ($return_value as $item) {
 			$entity = get_entity($item->getName());
 			if (!$load_js && $entity->canEdit()) {
 				$load_js = true;
 			}
+			
 			$item->setPriority($entity->order ?: $entity->time_created);
 		}
 		

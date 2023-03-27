@@ -29,7 +29,7 @@ return [
 			'context' => ['profile', 'dashboard', 'groups'],
 		],
 	],
-	'hooks' => [
+	'events' => [
 		'entity:url' => [
 			'object' => [
 				'\ColdTrick\PagesTools\Widgets::widgetURL' => [],

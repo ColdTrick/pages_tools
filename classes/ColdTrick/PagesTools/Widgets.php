@@ -5,23 +5,26 @@
 
 namespace ColdTrick\PagesTools;
 
+/**
+ * Widgets callbacks
+ */
 class Widgets {
 	
 	/**
 	 * Add widget title url
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:entity'
+	 * @param \Elgg\Event $event 'register', 'menu:entity'
 	 *
 	 * @return void|string
 	 */
-	public static function widgetURL(\Elgg\Hook $hook){
+	public static function widgetURL(\Elgg\Event $event) {
 		
-		$return_value = $hook->getValue();
+		$return_value = $event->getValue();
 		if (!empty($return_value)) {
 			return;
 		}
 		
-		$widget = $hook->getEntityParam();
+		$widget = $event->getEntityParam();
 		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
@@ -29,12 +32,7 @@ class Widgets {
 		switch ($widget->handler) {
 			case 'pages':
 				$owner = $widget->getOwnerEntity();
-				
-				if ($owner instanceof \ElggGroup) {
-					return 'pages/group/' . $owner->guid . '/all';
-				}
-				
-				return 'pages/owner/' . $owner->username;
+				return $owner instanceof \ElggGroup ? 'pages/group/' . $owner->guid . '/all' : 'pages/owner/' . $owner->username;
 			case 'index_pages':
 				return 'pages/all';
 		}

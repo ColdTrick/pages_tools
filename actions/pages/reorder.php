@@ -33,7 +33,7 @@ if (empty($sub_pages)) {
 	return elgg_error_response(elgg_echo('pages_tools:actions:reorder:error:subpages'));
 }
 
-foreach ($sub_pages as $sub_page){
+foreach ($sub_pages as $sub_page) {
 	$pos = array_search($sub_page->guid, $order) + 1;
 	
 	$sub_page->order = $pos;
