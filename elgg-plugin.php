@@ -16,6 +16,21 @@ return [
 		'pages/export' => ['access' => 'public'],
 		'pages/reorder' => [],
 	],
+	'events' => [
+		'entity:url' => [
+			'object' => [
+				'\ColdTrick\PagesTools\Widgets::widgetURL' => [],
+			],
+		],
+		'register' => [
+			'menu:entity' => [
+				'\ColdTrick\PagesTools\Menus\Entity::registerExportPage' => [],
+			],
+			'menu:pages_nav' => [
+				'\ColdTrick\PagesTools\Menus\PagesNav::orderPagesNav' => ['priority' => 999],
+			],
+		],
+	],
 	'view_options' => [
 		'forms/pages/export' => ['ajax' => true],
 	],
@@ -27,21 +42,6 @@ return [
 		// overrule default pages widget, to add group support
 		'pages' => [
 			'context' => ['profile', 'dashboard', 'groups'],
-		],
-	],
-	'events' => [
-		'entity:url' => [
-			'object' => [
-				'\ColdTrick\PagesTools\Widgets::widgetURL' => [],
-			],
-		],
-		'register' => [
-			'menu:entity' => [
-				'\ColdTrick\PagesTools\Menus::registerExportPage' => [],
-			],
-			'menu:pages_nav' => [
-				'\ColdTrick\PagesTools\Menus::orderPagesNav' => ['priority' => 999],
-			],
 		],
 	],
 ];
