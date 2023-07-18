@@ -40,7 +40,7 @@ echo elgg_view_module('info', elgg_echo('export'), $body);
 
 $footer = elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo('export'),
+	'text' => elgg_echo('export'),
 	'onclick' => '$.colorbox.close();',
 ]);
 
