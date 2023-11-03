@@ -10,15 +10,9 @@
 		"issues": "https://github.com/ColdTrick/pages_tools/issues"
 	},
 	"require": {
-		"composer/installers": "^1.0.8",
 		"dompdf/dompdf" : "~2.0.0"
 	},
 	"conflict": {
 		"elgg/elgg": "<5.0"
-	},
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true
-		}
 	}
 }
