@@ -12,5 +12,5 @@ echo elgg_list_entities([
 	'limit' => (int) $widget->pages_count ?: 8,
 	'pagination' => false,
 	'no_results' => elgg_echo('pages:none'),
-	'widget_more' => elgg_view_url(elgg_generate_url('collection:object:page:all'), elgg_echo('pages:more')),
+	'widget_more' => elgg_view_url($widget->getURL(), elgg_echo('pages:more')),
 ]);

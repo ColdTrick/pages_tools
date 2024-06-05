@@ -2,6 +2,8 @@
 
 namespace ColdTrick\PagesTools\Menus;
 
+use Elgg\Menu\MenuItems;
+
 /**
  * Add menu items to the pages_nav menu
  */
@@ -17,7 +19,7 @@ class PagesNav {
 	public static function orderPagesNav(\Elgg\Event $event): void {
 		$load_js = false;
 		
-		/* @var $return_value = MenuItems */
+		/* @var $return_value MenuItems */
 		$return_value = $event->getValue();
 		
 		/* @var $item \ElggMenuItem */
@@ -40,7 +42,7 @@ class PagesNav {
 		}
 		
 		if ($load_js) {
-			elgg_require_js('pages_tools/navigation');
+			elgg_import_esm('pages_tools/navigation');
 		}
 	}
 }

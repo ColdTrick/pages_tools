@@ -20,9 +20,9 @@ class PDFExport {
 	 * @param bool      $include_index    add a index page
 	 * @param bool      $include_subpages include the subpages
 	 *
-	 * @return string contents for PDF
+	 * @return void but streams the contents of the PDF
 	 */
-	public static function toPDF(\ElggPage $entity, string $format = 'a4', bool $include_index = false, bool $include_subpages = false) {
+	public static function toPDF(\ElggPage $entity, string $format = 'a4', bool $include_index = false, bool $include_subpages = false): void {
 		// begin of output
 		$html = '';
 		
@@ -61,7 +61,9 @@ class PDFExport {
 		}
 		
 		// load library
-		$dompdf = new Dompdf();
+		$dompdf = new Dompdf([
+			'enable_remote' => true,
+		]);
 		// set correct page format
 		$dompdf->setPaper($format);
 		// set contents
@@ -72,13 +74,13 @@ class PDFExport {
 	}
 	
 	/**
-	 * Get the ordered list sub pages
+	 * Get the ordered list sub-pages
 	 *
 	 * @param \ElggPage $page the page to get subpages for
 	 *
-	 * @return false|\ElggPage[]
+	 * @return null|\ElggPage[]
 	 */
-	protected static function getOrderedChildren(\ElggPage $page) {
+	protected static function getOrderedChildren(\ElggPage $page): ?array {
 		$children = elgg_get_entities([
 			'type' => 'object',
 			'subtype' => 'page',
@@ -88,7 +90,7 @@ class PDFExport {
 			],
 		]);
 		if (empty($children)) {
-			return false;
+			return null;
 		}
 		 
 		$result = [];
@@ -119,7 +121,6 @@ class PDFExport {
 	 * @return string
 	 */
 	protected static function renderIndex(\ElggPage $page): string {
-		
 		$children = self::getOrderedChildren($page);
 		if (empty($children)) {
 			return '';
@@ -153,7 +154,6 @@ class PDFExport {
 	 * @return string
 	 */
 	protected static function renderChildPages(\ElggPage $page): string {
-		
 		$children = self::getOrderedChildren($page);
 		if (empty($children)) {
 			return '';

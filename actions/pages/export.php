@@ -21,6 +21,6 @@ set_time_limit(0);
 try {
 	PDFExport::toPDF($page, $format, $include_subpages, $include_index);
 	exit();
-} catch (Exception $e) {
-	return elgg_error_response($e->getMessage());
+} catch (\Throwable $t) {
+	return elgg_error_response($t->getMessage());
 }

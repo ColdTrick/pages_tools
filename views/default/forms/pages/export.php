@@ -1,6 +1,9 @@
 <?php
 
 $page = elgg_extract('entity', $vars);
+if (!$page instanceof \ElggPage) {
+	return;
+}
 
 $body = elgg_view_field([
 	'#type' => 'select',
@@ -41,7 +44,7 @@ echo elgg_view_module('info', elgg_echo('export'), $body);
 $footer = elgg_view_field([
 	'#type' => 'submit',
 	'text' => elgg_echo('export'),
-	'onclick' => '$.colorbox.close();',
+	'onclick' => 'import("elgg/lightbox").then((lightbox) => {lightbox.default.close();});',
 ]);
 
 elgg_set_form_footer($footer);

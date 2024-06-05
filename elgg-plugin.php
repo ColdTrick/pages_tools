@@ -18,7 +18,7 @@ return [
 	],
 	'events' => [
 		'entity:url' => [
-			'object' => [
+			'object:widget' => [
 				'\ColdTrick\PagesTools\Widgets::widgetURL' => [],
 			],
 		],
