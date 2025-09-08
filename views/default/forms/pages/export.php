@@ -18,19 +18,15 @@ $body = elgg_view_field([
 ]);
 
 $body .= elgg_view_field([
-	'#type' => 'checkbox',
+	'#type' => 'switch',
 	'#label' => elgg_echo('page_tools:export:include_subpages'),
 	'name' => 'include_children',
-	'switch' => true,
-	'value' => 1,
 ]);
 
 $body .= elgg_view_field([
-	'#type' => 'checkbox',
+	'#type' => 'switch',
 	'#label' => elgg_echo('page_tools:export:include_index'),
 	'name' => 'include_index',
-	'switch' => true,
-	'value' => 1,
 ]);
 
 $body .= elgg_view_field([
