@@ -10,7 +10,7 @@
 		"issues": "https://github.com/ColdTrick/pages_tools/issues"
 	},
 	"require": {
-		"dompdf/dompdf" : "~3.0.0"
+		"dompdf/dompdf" : "~3.1.0"
 	},
 	"conflict": {
 		"elgg/elgg": "<6.0"
