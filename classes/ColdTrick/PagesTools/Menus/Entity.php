@@ -26,14 +26,16 @@ class Entity {
 			return null;
 		}
 		
-		/* @var $return_value MenuItems */
+		/** @var MenuItems $return_value */
 		$return_value = $event->getValue();
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'export',
 			'icon' => 'download',
 			'text' => elgg_echo('export'),
-			'href' => elgg_http_add_url_query_elements('ajax/form/pages/export', [
+			'href' => elgg_generate_url('ajax', [
+				'type' => 'form',
+				'segments' => 'pages/export',
 				'guid' => $entity->guid,
 			]),
 			'link_class' => 'elgg-lightbox',

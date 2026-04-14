@@ -19,10 +19,10 @@ class PagesNav {
 	public static function orderPagesNav(\Elgg\Event $event): void {
 		$load_js = false;
 		
-		/* @var $return_value MenuItems */
+		/** @var MenuItems $return_value */
 		$return_value = $event->getValue();
 		
-		/* @var $item \ElggMenuItem */
+		/** @var \ElggMenuItem $item */
 		foreach ($return_value as $item) {
 			$guid = $item->getName();
 			if (!is_numeric($guid)) {

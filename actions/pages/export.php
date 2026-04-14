@@ -15,12 +15,13 @@ if (!$page instanceof \ElggPage) {
 	return elgg_error_response(elgg_echo('actionunauthorized'));
 }
 
-// this could take a while
-set_time_limit(0);
-
 try {
-	PDFExport::toPDF($page, $format, $include_subpages, $include_index);
-	exit();
+	$contents = PDFExport::toPDF($page, $format, $include_subpages, $include_index);
+	
+	return elgg_download_response($contents, elgg_get_friendly_title($page->getDisplayName()) . '.pdf', false, [
+		'content-type' => 'application/pdf',
+		'content-length' => strlen($contents),
+	]);
 } catch (\Throwable $t) {
 	return elgg_error_response($t->getMessage());
 }

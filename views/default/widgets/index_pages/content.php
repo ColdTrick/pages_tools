@@ -1,6 +1,6 @@
 <?php
 
-/* @var $widget \ElggWidget */
+/** @var \ElggWidget $widget */
 $widget = elgg_extract('entity', $vars);
 
 echo elgg_list_entities([
@@ -11,6 +11,6 @@ echo elgg_list_entities([
 	],
 	'limit' => (int) $widget->pages_count ?: 8,
 	'pagination' => false,
-	'no_results' => elgg_echo('pages:none'),
+	'no_results' => true,
 	'widget_more' => elgg_view_url($widget->getURL(), elgg_echo('pages:more')),
 ]);

@@ -13,6 +13,6 @@
 		"dompdf/dompdf" : "~3.1.0"
 	},
 	"conflict": {
-		"elgg/elgg": "<6.0"
+		"elgg/elgg": "<7.0"
 	}
 }

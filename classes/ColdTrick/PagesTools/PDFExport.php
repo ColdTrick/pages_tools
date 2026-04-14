@@ -20,9 +20,12 @@ class PDFExport {
 	 * @param bool      $include_index    add a index page
 	 * @param bool      $include_subpages include the subpages
 	 *
-	 * @return void but streams the contents of the PDF
+	 * @return null|string PDF contents
 	 */
-	public static function toPDF(\ElggPage $entity, string $format = 'a4', bool $include_index = false, bool $include_subpages = false): void {
+	public static function toPDF(\ElggPage $entity, string $format = 'a4', bool $include_index = false, bool $include_subpages = false): ?string {
+		// this could take a while
+		set_time_limit(0);
+		
 		// begin of output
 		$html = '';
 		
@@ -69,8 +72,9 @@ class PDFExport {
 		// set contents
 		$dompdf->loadHtml($html);
 		$dompdf->render();
-		// output as download
-		$dompdf->stream(elgg_get_friendly_title($entity->getDisplayName()) . '.pdf');
+		
+		// output as string
+		return $dompdf->output();
 	}
 	
 	/**
