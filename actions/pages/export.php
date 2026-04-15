@@ -20,7 +20,6 @@ try {
 	
 	return elgg_download_response($contents, elgg_get_friendly_title($page->getDisplayName()) . '.pdf', false, [
 		'content-type' => 'application/pdf',
-		'content-length' => strlen($contents),
 	]);
 } catch (\Throwable $t) {
 	return elgg_error_response($t->getMessage());
