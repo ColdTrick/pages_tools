@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0.2 (2026-11-12):
+
+- several small chores/fixes
+
 9.0.1 (2026-07-30):
 
 - several small chores/fixes
